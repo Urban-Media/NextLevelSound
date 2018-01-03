@@ -1,0 +1,621 @@
+/*Fonts */
+@font-face {
+  font-family: 'icomoon';
+  src:url('fonts/icomoon.eot?eegarh');
+  src:url('fonts/icomoon.eot?#iefixeegarh') format('embedded-opentype'),
+    url('fonts/icomoon.woff?eegarh') format('woff'),
+    url('fonts/icomoon.ttf?eegarh') format('truetype'),
+    url('fonts/icomoon.svg?eegarh#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'metroplayericon';
+  src:url('fonts/metroplayericon.eot?-1s7fzr');
+  src:url('fonts/metroplayericon.eot?#iefix-1s7fzr') format('embedded-opentype'),
+    url('fonts/metroplayericon.woff?-1s7fzr') format('woff'),
+    url('fonts/metroplayericon.ttf?-1s7fzr') format('truetype'),
+    url('fonts/metroplayericon.svg?-1s7fzr#metroplayericon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Colors */
+#OutoftheBox .jp-unmute,
+#OutoftheBox .jp-repeat-off,
+#OutoftheBox .jp-restore-screen {
+  color: #0e92c7 !important;
+}
+#OutoftheBox .jp-play-bar:after {
+  background: none repeat scroll 0 0 #0e92c7;
+}
+
+/* Reset */
+#OutoftheBox .OutoftheBox.media *{
+  box-sizing: content-box;
+}
+
+#OutoftheBox .OutoftheBox.media ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+#OutoftheBox .OutoftheBox.media ul li{
+  list-style: none;
+  margin: 0;
+}
+
+#OutoftheBox .OutoftheBox.media{
+  color: #333;
+}
+#OutoftheBox .OutoftheBox.media a{
+  color: #333;
+  text-decoration: none;
+}
+#OutoftheBox li:before{
+  content: none !important;
+}
+/* No Solution */
+#OutoftheBox .jp-no-solution{
+  padding: 20px;
+}
+
+/* Containers */
+#OutoftheBox .OutoftheBox.media{
+  margin: 5px 6px 30px;
+  position: relative;
+  z-index: 0;
+  border-radius: 18px;
+}
+
+#OutoftheBox .jp-video {
+  position:relative;
+  margin-bottom: 20px;
+}
+
+#OutoftheBox .jp-video-100 {
+  max-width: 100%;
+}
+
+#OutoftheBox .jp-video-270p {
+  max-width:480px;
+}
+
+#OutoftheBox .jp-video-360p {
+  max-width:570px;
+}
+
+/* Full Screen*/
+#OutoftheBox .jp-video-full {
+  width:100%!important;
+  position:static !important;
+  position:relative;
+}
+#OutoftheBox.jp-video-full .jp-jplayer {
+  top: 0;
+  left: 0;
+  position: fixed !important; position: relative; /* Rules for IE6 (full-screen) */
+  overflow: hidden;
+  z-index:1000;
+}
+
+#OutoftheBox .jp-video-full .jp-gui {
+  position: fixed !important; position: static; /* Rules for IE6 (full-screen) */
+  top: 0;
+  left: 0;
+  width:100%;
+  height:100%;
+  z-index:1000;
+  margin:0;
+}
+
+#OutoftheBox .jp-video-full .jp-interface {
+  position: absolute !important; position: relative; /* Rules for IE6 (full-screen) */
+  bottom: 0;
+  left: 0;
+  z-index:1000;
+  background: none repeat scroll 0 0 #EEF1F2;
+  border-radius: 18px 18px 0 0;
+  -webkit-box-shadow: 0 0 12px rgba(58, 51, 46, 0.35);
+  -moz-box-shadow: 0 0 12px rgba(58, 51, 46, 0.35);
+  box-shadow: 0 0 12px rgba(58, 51, 46, 0.35);
+}
+
+#OutoftheBox .jp-video.jp-video-full .jp-playlist{
+  display:none !important;
+}
+
+#OutoftheBox .jp-video.jp-video-full .jp-jplayer img{
+  position:absolute;
+  border-radius: 0;
+}
+#OutoftheBox .jp-video.jp-video-full .jp-jplayer video{
+  border-radius: 0;
+}
+
+/* Layout Player */
+#OutoftheBox .jp-jplayer {
+  background: url(../../../css/clouds/cloud_system_128.png) center no-repeat;
+  border: 1px solid #E4E4E4;
+  border-radius: 18px 18px 0 0;
+  position: relative;
+  transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  overflow: hidden;
+}
+
+#OutoftheBox .jp-video .jp-jplayer img{
+  position:absolute;
+  border-radius: 18px 18px 0 0;
+  height:100%;
+}
+
+#OutoftheBox .jp-video .jp-jplayer video{
+  border-radius: 18px 18px 0 0;
+}
+
+#OutoftheBox .jp-video-full .jp-jplayer img{
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+#OutoftheBox .jp-video-full .jp-jplayer{
+  border: 0;
+  margin: 0 auto;
+}
+
+/* Gui & Controls */
+#OutoftheBox .jp-gui{
+  margin: 0 -6px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 0 12px rgba(58, 51, 46, 0.35);
+  -moz-box-shadow: 0 0 12px rgba(58, 51, 46, 0.35);
+  box-shadow: 0 0 12px rgba(58, 51, 46, 0.35);
+  position: relative;
+  z-index: 2;
+}
+
+#OutoftheBox .jp-interface {
+  background: none repeat scroll 0 0 #EEF1F2;
+  position: relative;
+  width:100%;
+  padding-bottom: 12px;
+  min-height: 100px;
+}
+
+#OutoftheBox div.jp-controls-holder {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+/* Playlist*/
+#OutoftheBox .jp-song-title .jp-playlist-item-song-title {
+  font-size: 18px;
+  letter-spacing: -1px;
+  text-align: center;
+}
+
+#OutoftheBox .jp-song-title .jp-playlist-item-song-artist {
+  padding: 0 5px 20px 5px;
+  text-align: center;
+}
+
+#OutoftheBox .jp-song-title .jp-playlist-item-thumb{
+  display: none;
+}
+
+#OutoftheBox .jp-current-time, #OutoftheBox .jp-duration, #OutoftheBox .jp-stop, #OutoftheBox .jp-repeat, #OutoftheBox .jp-repeat-off, #OutoftheBox .jp-full-screen, #OutoftheBox .jp-restore-screen, #OutoftheBox .jp-shuffle, #OutoftheBox .jp-volume-bar, #OutoftheBox .jp-volume-max, .post-audio .song_title div {
+  display: block;
+}
+
+#OutoftheBox .jp-playlist-item {
+  text-decoration: none;
+}
+#OutoftheBox .jp-repeat,
+#OutoftheBox .jp-repeat-off{
+  position: absolute;
+  left: 30px;
+  top: 10px;
+}
+
+#OutoftheBox .jp-full-screen,
+#OutoftheBox .jp-restore-screen{
+  position: absolute;
+  right: 34px;
+  top: 14px;
+}
+
+#OutoftheBox .jp-playlist-toggle{
+  position: absolute;
+  top: 10px;
+}
+
+#OutoftheBox .jp-interface, #OutoftheBox .jp-interface ul.jp-controls {
+  position: relative;
+  padding-bottom: 12px;
+}
+#OutoftheBox .jp-interface ul.jp-controls {
+  margin: 0px 20px 0;
+  position: relative;
+  top: 5px;
+  height: 10px;
+}
+#OutoftheBox .jp-previous.disabled, #OutoftheBox .jp-next.disabled {
+  opacity: 0.4 !important;
+}
+
+#OutoftheBox .jp-play, #OutoftheBox .jp-pause, #OutoftheBox .jp-previous, #OutoftheBox .jp-next {
+  font-size: 26px;
+  left: 50%;
+  margin-left: -12px;
+  position: absolute;
+  top: 0;
+}
+#OutoftheBox .jp-previous {
+  margin-left: -50px;
+}
+#OutoftheBox .jp-next {
+  margin-left: 26px;
+}
+#OutoftheBox .jp-mute, #OutoftheBox .jp-unmute {
+  position: absolute;
+  right: 4px;
+  top: 10px;
+}
+#OutoftheBox .jp-progress{
+  height:20px;
+}
+#OutoftheBox .jp-progress-bar {
+  height: 8px;
+  left: 80px;
+  right: 80px;
+  overflow: hidden;
+  position: absolute;
+  top: 6px;
+}
+#OutoftheBox .jp-seek-bar {
+  background: none repeat scroll 0 0 #333333;
+  cursor: pointer;
+  height: 20px;
+  overflow: hidden;
+  width: 100% !important;
+}
+#OutoftheBox .jp-play-bar {
+  background: none repeat scroll 0 0 #CED3D7;
+  height: 20px;
+  position: relative;
+  width: 0;
+}
+#OutoftheBox .jp-play-bar:after {
+  content: "";
+  display: block;
+  height: 20px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 9px;
+}
+#OutoftheBox .jp-current-time, #OutoftheBox .jp-duration {
+  font-family: Arial;
+  font-size: 14px;
+  line-height: 20px;
+  width: 60px;
+}
+#OutoftheBox .jp-current-time {
+  float: left;
+  margin-left: 20px;
+}
+#OutoftheBox .jp-duration {
+  float: right;
+  margin-right: 20px;
+  text-align: right;
+}
+
+/* @group playlist */
+#OutoftheBox div.jp-playlist {
+  width:100%;
+  background-color: #E2E2E2;
+  background: -webkit-linear-gradient(left top, #F1F1F1 , #E2E2E2); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, #F1F1F1, #E2E2E2); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, #F1F1F1, #E2E2E2); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, #F1F1F1 , #E2E2E2); /* Standard syntax */
+
+  border-radius: 0 0 18px 18px;
+  border: 1px solid #D2D2D2;
+  position: relative;
+  z-index: 1;
+}
+
+#OutoftheBox div.jp-playlist li {
+  border-top: 1px solid #EEF1F2;
+  margin: 0px;
+  padding: 10px 25px;
+  word-wrap: break-word;
+}
+
+#OutoftheBox div.jp-playlist li div{
+  width: 100%;
+  display: table-row;
+}
+
+#OutoftheBox div.jp-playlist li.jp-playlist-current{
+  background-color: #EEF1F2;
+  box-shadow: 0 0 3px #B6ACAC;
+}
+
+#OutoftheBox div.jp-playlist li:hover{
+  background-color: #EEF1F2;
+  box-shadow: 0 0 6px #B6ACAC;
+  transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+}
+/* Note that the first-child (IE6) and last-child (IE6/7/8) selectors do not work on IE */
+
+#OutoftheBox div.jp-playlist li:last-child {
+  border-bottom:none;
+  border-radius: 0 0 18px 18px;
+}
+#OutoftheBox .jp-playlist-current .jp-playlist-item-song-title,
+#OutoftheBox .jp-playlist-current .jp-playlist-item-song-artist {
+  color: #0e92c7;
+}
+
+
+#OutoftheBox div.jp-playlist-item-song-title{
+  color: #333333;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
+  font-family: Arial;
+}
+#OutoftheBox .jp-interface div.jp-playlist-item-song-title{
+  padding-bottom: 3px;
+  padding-top: 5px; 
+}
+
+#OutoftheBox div.jp-playlist-item-song-artist{
+  color: #333333;
+  font-size: 11px;
+  text-align: left;
+  font-family: Arial;
+}
+
+#OutoftheBox span.jp-playlist-item-url{
+  display: table-cell;
+  vertical-align: middle;
+  width: 75px;
+}
+
+#OutoftheBox .jp-playlist-item-dl,
+#OutoftheBox .jp-playlist-item-sell{
+  font-size: 16px;
+  height: 16px;
+  margin-left: 15px;
+  margin-top: -2px;
+  position: relative;
+  width: 16px;
+}
+
+#OutoftheBox .jp-playlist-item-sell{
+  top:1px;
+}
+#OutoftheBox .media a.jp-playlist-item {
+  display: table-cell;
+  vertical-align: middle;
+  padding:0 20px;
+  width:100%;
+}
+#OutoftheBox .media.audio.nocover a.jp-playlist-item {
+  margin-left:0;
+}
+
+#OutoftheBox .media .jp-playlist-item-img{
+  min-width:50px;
+  width:50px;
+  display: none;
+  vertical-align: middle
+
+}
+#OutoftheBox .media .jp-playlist-item-thumb{
+  min-width:50px;
+  width:50px;
+  height:auto;
+  border-radius: 5px;
+}
+
+#OutoftheBox .media li div.jp-playlist-item-song-title,
+#OutoftheBox .media li div.jp-playlist-item-song-artist{
+  display: block;
+}
+
+/* Audio player */
+#OutoftheBox .media.audio.cover .jp-jplayer {
+  overflow:hidden;
+  border: none;
+}
+#OutoftheBox .media.audio .jp-jplayer img{
+  border-radius: 18px 18px 0 0;
+  height:200px!important;
+  width: auto!important;
+  margin: 0 auto;
+  position: relative;
+  display:block!important;
+  background-color: #EEF1F2;
+}
+
+#OutoftheBox .media.audio.nocover .jp-jplayer{
+  display:none!important;
+}
+#OutoftheBox .media.audio.nocover .jp-playlist-item-img{
+  display:none;
+}
+#OutoftheBox .media.audio.nocover span.jp-playlist-item-url{
+  top:0px;
+}
+#OutoftheBox .audio .jp-full-screen {
+  display: none !important;
+}
+#OutoftheBox .audio .jp-restore-screen {
+  display: none !important;
+}
+
+
+/* ICONS */
+#OutoftheBox .jp-playlist-item-dl,
+#OutoftheBox .jp-playlist-item-sell,
+#OutoftheBox .jp-full-screen,
+#OutoftheBox .jp-restore-screen{
+  font-family: 'icomoon';
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 1;
+  text-decoration: none !important;
+  text-transform: none;
+}
+
+#OutoftheBox .jp-playlist-item-url .jp-playlist-item-dl:before {
+  content: "\e102";
+}
+
+#OutoftheBox .jp-playlist-item-url .jp-playlist-item-sell:before {
+  content: "\e103";
+}
+
+#OutoftheBox .jp-full-screen:before {
+  content: "\e100";
+}
+
+#OutoftheBox .jp-restore-screen:before {
+  content: "\e101";
+}
+
+#OutoftheBox [class^="mticon-"], #OutoftheBox [class*=" mticon-"] {
+  font-family: 'metroplayericon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#OutoftheBox .mticon-list-ul:before {
+  content: "\f0ca";
+}
+#OutoftheBox .mticon-cloud-download:before {
+  content: "\f0ed";
+}
+#OutoftheBox .mticon-play:before {
+  content: "\e600";
+}
+#OutoftheBox .mticon-pause:before {
+  content: "\e601";
+}
+#OutoftheBox .mticon-stop:before {
+  content: "\e602";
+}
+#OutoftheBox .mticon-backward:before {
+  content: "\e603";
+}
+#OutoftheBox .mticon-forward:before {
+  content: "\e604";
+}
+#OutoftheBox .mticon-play2:before {
+  content: "\e605";
+}
+#OutoftheBox .mticon-pause2:before {
+  content: "\e606";
+}
+#OutoftheBox .mticon-stop2:before {
+  content: "\e607";
+}
+#OutoftheBox .mticon-backward2:before {
+  content: "\e608";
+}
+#OutoftheBox .mticon-forward2:before {
+  content: "\e609";
+}
+#OutoftheBox .mticon-first:before {
+  content: "\e60a";
+}
+#OutoftheBox .mticon-last:before {
+  content: "\e60b";
+}
+#OutoftheBox .mticon-previous:before {
+  content: "\e60c";
+}
+#OutoftheBox .mticon-next:before {
+  content: "\e60d";
+}
+#OutoftheBox .mticon-eject:before {
+  content: "\e60e";
+}
+#OutoftheBox .mticon-volume-high:before {
+  content: "\e60f";
+}
+#OutoftheBox .mticon-volume-medium:before {
+  content: "\e610";
+}
+#OutoftheBox .mticon-volume-low:before {
+  content: "\e611";
+}
+#OutoftheBox .mticon-volume-mute:before {
+  content: "\e612";
+}
+#OutoftheBox .mticon-volume-mute2:before {
+  content: "\e613";
+}
+#OutoftheBox .mticon-volume-increase:before {
+  content: "\e614";
+}
+#OutoftheBox .mticon-volume-decrease:before {
+  content: "\e615";
+}
+#OutoftheBox .mticon-loop:before {
+  content: "\e616";
+}
+#OutoftheBox .mticon-loop2:before {
+  content: "\e617";
+}
+#OutoftheBox .mticon-loop3:before {
+  content: "\e618";
+}
+#OutoftheBox .mticon-shuffle:before {
+  content: "\e619";
+}
+
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 500px) {
+  #OutoftheBox div.jp-playlist li div{
+    text-align: center;
+    display: block;
+  }
+  #OutoftheBox .media a.jp-playlist-item{
+    display: block;
+    width: initial;
+  }
+  #OutoftheBox span.jp-playlist-item-url{
+    display: block;
+    width: 100%;
+  }
+  #OutoftheBox .jp-playlist-item-dl, #OutoftheBox .jp-playlist-item-sell{
+    margin-left:6px;
+  }
+}

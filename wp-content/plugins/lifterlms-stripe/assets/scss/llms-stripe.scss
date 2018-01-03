@@ -1,0 +1,14 @@
+.llms-stripe-card.StripeElement {
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    padding: 6px 10px;
+
+    &.StripeElement--invalid {
+		margin-bottom: 5px;
+    }
+}
+
+.llms-stripe-card-errors {
+	color: #e5554e;
+	text-align: center;
+}

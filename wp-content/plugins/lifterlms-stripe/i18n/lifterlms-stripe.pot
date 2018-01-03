@@ -1,0 +1,207 @@
+# Copyright (C) 2017 lifterlms-stripe
+# This file is distributed under the same license as the lifterlms-stripe package.
+msgid ""
+msgstr ""
+"Project-Id-Version: lifterlms-stripe\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: LifterLMS <help@lifterlms.com>\n"
+"Last-Translator: Thomas Patrick Levy <thomas@lifterlms.com>\n"
+"Report-Msgid-Bugs-To: https://lifterlms.com/my-account/my-tickets\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: lifterlms-stripe.php:217
+msgid "LifterLMS Stripe is currently enabled but the %sForce SSL%s option is disabled. Your checkout may not be secure and Stripe will only work in test mode! %sLearn More%s."
+msgstr ""
+
+#: templates/stripe-cc-form.php:14
+msgid "LifterLMS Stripe is currently in test mode. You may use card number \"4242424242424242\" with an expiration date in the future and any CVC and Zip. For more information see the %1$sStripe Testing Documentation%2$s."
+msgstr ""
+
+#: templates/stripe-cc-form.php:24
+msgid "Payment Method"
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:74
+msgid "Powered by Stripe"
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:76
+msgid "Allow customers to purchase courses and memberships using Stripe."
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:78
+msgid "Credit or Debit Card"
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:79
+msgid "Processed by Stripe"
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:96
+msgid "Stipe Test Mode can be used to process test transactions. <a href=\"%s\">Learn more</a>."
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:97
+msgid "Test Mode"
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:119
+msgid "This looks like a Publishable Key! Your Secret Key should go here."
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:120
+msgid "This looks like a Secret Key! Your Publishable Key should go here."
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:155
+msgid "Cannot process a transaction for \"%s\""
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:165
+msgid "Free Trial"
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:170
+msgid "Free trial started"
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:202
+msgid "Access Plan Name"
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:203
+msgid "Access Plan SKU"
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:204
+msgid "Access Plan ID"
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:205
+msgid "Product Name"
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:206
+msgid "Product SKU"
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:207
+msgid "Product ID"
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:221
+msgid "Failed charge attempt for %s payment using \"%s\""
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:240
+msgid "Charge attempt for %s payment using \"%s\" succeeded! [Charge ID: %s]"
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:532, includes/classes/llms.gateway.stripe.php:605
+msgid "Missing payment method details."
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:549
+msgid "Payment gateway changed from \"%1$s\" to \"%2$s\"."
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:553
+msgid "Customer ID changed from \"%1$s\" to \"%2$s\"."
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:557
+msgid "Source ID changed from \"%1$s\" to \"%2$s\"."
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:562
+msgid "Payment source updated by customer."
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:613
+msgctxt "min transaction amount error"
+msgid "Stripe cannot process %s transactions for less than %s"
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:615
+msgctxt "max transaction amount error"
+msgid "Stripe cannot process %s transactions for more than %s"
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:628
+msgid "Stripe Customer \"%s\" created or updated."
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:715
+msgid "Missing or invalid transaction."
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:755
+msgid "An unknown error was encountered while attempting to process the refund."
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:777
+msgid "Stripe Live API Credentials"
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:778, includes/classes/llms.gateway.stripe.php:799
+msgid "Enter your Stripe API credentials to process transactions via Stripe. Learn how to access your Stripe API Credentials <a href=\"%s\">here</a>."
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:783
+msgid "Live Publishable Key"
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:784
+msgid "Live Secret Key"
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:798
+msgid "Stripe Test API Credentials"
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:804
+msgid "Test Publishable Key"
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:805
+msgid "Test Secret Key"
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:818
+msgid "Additional Options"
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:823
+msgid "Enable Saved Cards"
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:824
+msgid "When enabled, users can checkout with a card saved during previous transactions. Cards information is stored on Stripe's servers."
+msgstr ""
+
+#: includes/classes/llms.gateway.stripe.php:826
+msgid "Saved Cards"
+msgstr ""
+
+#: includes/classes/llms.stripe.api.php:63
+msgid "There was a problem connecting to the payment gateway."
+msgstr ""
+
+#: includes/classes/llms.stripe.api.php:70
+msgid "Empty Response."
+msgstr ""
+
+#: includes/classes/llms.stripe.customer.php:40
+msgid "LifterLMS Student ID"
+msgstr ""
+
+#: includes/classes/llms.stripe.customer.php:192
+msgid "Add a new card"
+msgstr ""

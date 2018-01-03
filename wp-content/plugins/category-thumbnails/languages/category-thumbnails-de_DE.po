@@ -1,0 +1,134 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Category Thumbnails v1.0.5\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2014-03-20 22:58:23+0000\n"
+"Last-Translator: Adrian Preuß <a.preuss@hovida-design.de>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#: admin_template.php:11
+#@ category-thumbnails
+msgid "add Category image"
+msgstr "Kategoriebild hinzufügen"
+
+#: admin_template.php:15
+#@ category-thumbnails
+msgid "edit Thumbnail"
+msgstr "Thumbnail bearbeiten"
+
+#: admin_template.php:17
+#@ category-thumbnails
+msgid "remove Category image"
+msgstr "Kategoriebild entfernen"
+
+#: admin_template.php:21
+#@ category-thumbnails
+msgid "Set Category Thumbnail"
+msgstr "Kategoriebild setzen"
+
+#: admin_template.php:22
+#@ category-thumbnails
+msgid "Insert Thumbnail"
+msgstr "Thumbnail einfügen"
+
+#: admin_template.php:24
+#, php-format
+#@ category-thumbnails
+msgid "This Category image will be displayed if the Theme supports %s."
+msgstr "Dieses Kategoriebild wird angezeigt, wenn dein Design %s unterstützt."
+
+#. translators: plugin header field 'Name'
+#: category-thumbnails.php:0
+#: category-thumbnails.php:39
+#@ category-thumbnails
+msgid "Category Thumbnails"
+msgstr "Kategorie Thumbnails"
+
+#. translators: plugin header field 'PluginURI'
+#: category-thumbnails.php:0
+#@ category-thumbnails
+msgid "http://hovida-design.de/wordpress-plugin-category-thumbnails/"
+msgstr "http://hovida-design.de/wordpress-plugin-category-thumbnails/"
+
+#. translators: plugin header field 'Description'
+#: category-thumbnails.php:0
+#@ category-thumbnails
+msgid "This Plugin provide functions like post-thumbnails for categories and (own) custom taxonomys. Please visit the Author-URL for Documentation."
+msgstr "Dieses Plugin stellt Funktionen wie post-thumbnails für Kategorien und (eigene) custom Taxonomys bereit. Bitte besuchen Sie die Autor-URL für die Dokumentation."
+
+#. translators: plugin header field 'Author'
+#: category-thumbnails.php:0
+#@ category-thumbnails
+msgid "Adrian Preuss"
+msgstr "Adrian Preuss"
+
+#. translators: plugin header field 'AuthorURI'
+#: category-thumbnails.php:0
+#, php-format
+#@ category-thumbnails
+msgid "mailto:support@hovida-design.de?Subject=WordPress%20category-thumbnails"
+msgstr "mailto:support@hovida-design.de?Subject=WordPress%20category-thumbnails"
+
+#. translators: plugin header field 'Version'
+#: category-thumbnails.php:0
+#@ category-thumbnails
+msgid "1.0.5"
+msgstr "1.0.5"
+
+#: category-thumbnails.php:82
+#@ category-thumbnails
+msgid "Insert into Category"
+msgstr "In Kategorie einfügen"
+
+#: category-thumbnails.php:92
+#@ category-thumbnails
+msgid "WARNING"
+msgstr "WARNUNG"
+
+#: category-thumbnails.php:92
+#, php-format
+#@ category-thumbnails
+msgid "Your active Theme \"%s\" don't Support %s. Please add %s to your %s"
+msgstr "Ihr aktuelles Design \"%s\" unterstützt derzeit kein %s. Bitte fügen Sie %s in der %s hinzu"
+
+#: category-thumbnails.php:163
+#: category-thumbnails.php:189
+#: category-thumbnails.php:197
+#@ category-thumbnails
+msgid "Thumbnail"
+msgstr "Thumbnail"
+
+#: category-thumbnails.php:72
+#@ category-thumbnails
+msgid "Help"
+msgstr "Hilfe"
+
+#: category-thumbnails.php:73
+#@ category-thumbnails
+msgid "Donate"
+msgstr "Spenden"
+
+#: category-thumbnails.php:74
+#@ category-thumbnails
+msgid "Documentation"
+msgstr "Dokumentation"
+
+#: category-thumbnails.php:80
+#@ default
+msgid "Insert into Post"
+msgstr ""
+

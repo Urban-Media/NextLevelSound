@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Category Thumbnails « WordPress Codex</title>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" type="text/css" href="../css/docs.css" />
+	</head>
+	<body>
+		<header>
+			<div class="wrapper">
+				<h1>Codex</h1>
+			</div>
+		</header>
+		<section class="wrapper">
+			<h2>Category Thumbnails</h2>
+			<p><b>Category Thumbnails</b> is a <a href="https://codex.wordpress.org/Theme_Features" title="Theme Features">theme feature</a>. Category Thumbnail is an image that is chosen as the representative image for Categorys, or Custom Taxonomys. The display of this image is up to the theme. This is especially useful for "magazine-style" themes where each category has an image.</p>
+			
+			<h3>Enabling Support for Category Thumbnails</h3>
+			<p>Themes have to declare their support for post thumbnails before the interface for assigning these images will appear on the Edit Post and Edit Page screens. They do this by putting the following in their <a href="https://codex.wordpress.org/Theme_Development#Functions_File" title="Theme Development">functions.php</a> file:</p>
+			<pre>add_theme_support('category-thumbnails');</pre>
+			
+			<h3>Setting a Category Thumbnail</h3>
+			<p>If your theme was successful in adding support for Category Thumbnails the "Thumbnail" button will be visible on the on the category screens. If it isn't, make sure "Category Thumbnails" is enabled.</p>
+			
+			<h3>Function Reference</h3>
+			<table cellspacing="10" width="100%">
+				<tbody>
+					<tr valign="top">
+						<td width="50%">
+							<table class="widefat">
+								<tbody>
+									<tr style="background:#464646; color:#d7d7d7;">
+										<th><b>Template Tags</b></th>
+									</tr>
+									<tr>
+										<td>
+											<ul>
+												<li><tt><a style="color:red;" href="#has_category_thumbnail.html" title="Function Reference/has category thumbnail">has_category_thumbnail()</a></tt></li>
+												<li><tt><a style="color:red;" href="#the_category_thumbnail.html" title="Function Reference/the category thumbnail">the_category_thumbnail()</a></tt></li>
+												<li><tt><a style="color:red;" href="#get_the_category_thumbnail.html" title="Function Reference/get the category thumbnail">get_the_category_thumbnail()</a></tt></li>
+											</ul>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+						<td width="50%">
+							<table class="widefat">
+								<tbody>
+									<tr style="background:#464646; color:#d7d7d7;">
+										<th><b>Other Functions</b></th>
+									</tr>
+									<tr>
+										<td>
+											<ul>
+												<li><tt><a style="color:red;" href="#get_the_category_data.html" title="Function Reference/get the category data">get_the_category_data()</a></tt></li>
+											</ul>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<h3>Example</h3>
+			<pre>// check if the taxonomy has a Category Thumbnail assigned to it.
+if(has_category_thumbnail()) {
+	the_category_thumbnail();
+}</pre>
+			<p><b>Note:</b> To return the Category Thumbnail for use in your PHP code instead of displaying it, use: <a style="color:red;" href="#get_the_category_thumbnail.html" title="Function Reference/get the category thumbnail">get_the_category_thumbnail()</a></p>
+		
+			<h3>Example of functions.php</h3>
+			<pre>if(function_exists('add_theme_support')) {
+	add_theme_support('category-thumbnails');
+}</pre>
+
+			<h3>Source File</h3>
+			<ul>
+				<li><code><a href="http://plugins.svn.wordpress.org/category-thumbnails/trunk/public_api.php">public_api.php</a></code></li>
+			</ul>
+			
+			<h3>External Resources</h3>
+			<ul>
+				<li><a href="http://hovida-design.de/wordpress-plugin-category-thumbnails/" class="external text" title="http://hovida-design.de/wordpress-plugin-category-thumbnails/">Neues aus der Agentur - Hauseigenes Plugin Category Thumbnails</a>, by hovida design | Web- & Medienagentur Aachen
+			</ul>
+			
+			<h3>Related</h3>
+				<p>
+					<strong class="selflink"><b>Category Thumbnails</b></strong>: 
+					<a style="color:red;" href="#has_category_thumbnail.html" title="Function Reference/has category thumbnail"> has_category_thumbnail()</a>,
+					<a style="color:red;" href="#the_category_thumbnail.html" title="Function Reference/the category thumbnail"> the_category_thumbnail()</a>,
+					<a style="color:red;" href="#get_the_category_thumbnail.html" title="Function Reference/get the category thumbnail"> get_the_category_thumbnail()</a>,
+					<a style="color:red;" href="#get_the_category_data.html" title="Function Reference/get the category data"> get_the_category_data()</a> 
+				</p>
+				
+				<p>
+					<a href="https://codex.wordpress.org/Theme_Features" title="Theme Features"><b>Theme Support</b></a>: 
+					<a href="https://codex.wordpress.org/Function_Reference/add_theme_support" title="Function Reference/add theme support"> add_theme_support()</a>,
+					<a href="https://codex.wordpress.org/Function_Reference/remove_theme_support" title="Function Reference/remove theme support"> remove_theme_support()</a>,
+					<a href="https://codex.wordpress.org/Function_Reference/current_theme_supports" title="Function Reference/current theme supports"> current_theme_supports()</a>
+				</p>
+		</section>
+	</body>
+</html>

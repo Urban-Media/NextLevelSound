@@ -1,0 +1,86 @@
+              <div class="vimeography-gallery-menu-group accordion-group">
+
+                <div class="vimeography-gallery-menu-heading">
+                  <a href="#vimeography-gallery-menu-pro" data-parent="#vimeography-gallery-main-menu" data-toggle="collapse">Vimeography Pro <i class="icon-tasks pull-right"></i></a>
+                </div>
+
+                <div id="vimeography-gallery-menu-pro" class="vimeography-gallery-menu-content collapse">
+                    <form method="post" action="{{admin_url}}edit-galleries&id={{id}}">
+
+                      <div class="vimeography-gallery-menu-setting first vimeography-numeric">
+                        <label>Videos Per Page <i class="icon-question-sign pull-right" title="Videos Per Page" data-content="Sets the number of videos that should show on each gallery page."></i></label>
+                        <div class="vimeography-numeric-control-wrapper">
+                          <input id="vimeography-videos-per-page" name="vimeography_pro_settings[videos_per_page]" value="{{per_page}}" />
+                        </div>
+                      </div>
+
+
+                      <div class="vimeography-gallery-menu-setting vimeography-selector">
+                        <label>Sort videos by <i class="icon-question-sign pull-right" title="Video Sort Order" data-content="Defines the order that the videos should be displayed in."></i></label>
+                        <select id="vimeography-sort" class="span3" name="vimeography_pro_settings[sort]" style="width: 180px;">
+                          <option value='date' {{#selected_sort}}{{#date}}selected="selected"{{/date}}{{/selected_sort}}>date added</option>
+                          <option value='likes' {{#selected_sort}}{{#likes}}selected="selected"{{/likes}}{{/selected_sort}}>number of likes</option>
+                          <option value='comments' {{#selected_sort}}{{#comments}}selected="selected"{{/comments}}{{/selected_sort}}>number of comments</option>
+                          <option value='plays' {{#selected_sort}}{{#plays}}selected="selected"{{/plays}}{{/selected_sort}}>number of plays</option>
+                          <option value='alphabetical' {{#selected_sort}}{{#alphabetical}}selected="selected"{{/alphabetical}}{{/selected_sort}}>alphabetically</option>
+                          <option value='duration' {{#selected_sort}}{{#duration}}selected="selected"{{/duration}}{{/selected_sort}}>duration</option>
+                          <option value='default' {{#selected_sort}}{{#default}}selected="selected"{{/default}}{{/selected_sort}}>use my sort from Vimeo</option>
+                        </select>
+                      </div>
+
+                      <div class="vimeography-gallery-menu-setting vimeography-visibility vimeography-reverse-order" style="display: none;">
+                        <input id="vimeography-reverse-order" type="checkbox" name="vimeography_pro_settings[reverse_order]" {{#direction}}checked{{/direction}} style="display: inline-block; margin: 4px 6px;" />
+                        <label for="vimeography-reverse-order" style="display: inline-block; padding: 6px 0 0 0;">Reverse Sort Order</label>
+                      </div>
+
+                      <div class="vimeography-gallery-menu-setting vimeography-visibility">
+                        <input id="vimeography-enable-playlist" type="checkbox" name="vimeography_pro_settings[enable_playlist]" {{#playlist}}checked{{/playlist}} style="display: inline-block; margin: 4px 6px;" />
+                        <label for="vimeography-enable-playlist" style="display: inline-block; padding: 6px 0 0 0;">Enable Playlist</label>
+                      </div>
+
+                      <div class="vimeography-gallery-menu-setting vimeography-visibility">
+                        <input id="vimeography-allow-downloads" type="checkbox" name="vimeography_pro_settings[allow_downloads]" {{#allow_downloads}}checked{{/allow_downloads}} style="display: inline-block; margin: 4px 6px;" />
+                        <label for="vimeography-allow-downloads" style="display: inline-block; padding: 6px 0 0 0;">Allow Downloads <i style="margin-left: 65px;" class="icon-question-sign pull-right" title="Allow Downloads" data-content="You can only allow downloads if the videos are coming from your own Vimeo account and you are a Vimeo Pro member. Download links expire after 3 hours, so make sure to set your video refresh settings to every hour."></i></label>
+                      </div>
+
+                      <div class="vimeography-gallery-menu-setting last">
+                        {{{pro_nonce}}}
+                        <input class="btn btn-primary" type="submit" value="Save Changes">
+                      </div>
+
+                    </form>
+                </div>
+              </div> <!-- end group -->
+
+<script type="text/javascript">
+  (function($){
+    $(document).ready(function(){
+
+      var sort_val = $('#vimeography-sort').val();
+
+      if (sort_val !== 'default') {
+        $('.vimeography-reverse-order').show();
+      }
+
+      $("#vimeography-videos-per-page").kendoNumericTextBox({
+          min: 1,
+          max: 50,
+          step: 1,
+          decimals: 0,
+          format: "#"
+      });
+
+      $('#vimeography-sort').change(function(){
+        var value = $(this).val();
+        if (value == 'default') {
+          $('.vimeography-reverse-order').fadeOut();
+        } else {
+          if ( ! $('.vimeography-reverse-order').is(":visible") ) {
+            $('.vimeography-reverse-order').fadeIn();
+          }
+        }
+      });
+
+    });
+  })(jQuery)
+</script>

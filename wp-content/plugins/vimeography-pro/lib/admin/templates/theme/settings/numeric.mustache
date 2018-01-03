@@ -1,0 +1,18 @@
+<div class="vimeography-gallery-menu-setting vimeography-numeric {{id}}">
+  <label for="{{id}}">{{label}}</label>
+  <div class="{{id}} vimeography-numeric-control-wrapper">
+    <input id="{{id}}" name="vimeography_theme_settings[{{id}}][value]" value="{{value}}" />
+  </div>
+
+  {{#properties}}
+    <input type="hidden" name="vimeography_theme_settings[{{id}}][targets][]" value="{{{target}}}" />
+    <input type="hidden" name="vimeography_theme_settings[{{id}}][attributes][]" value="{{attribute}}" />
+  {{/properties}}
+  {{#expressions}}
+    <input type="hidden" name="vimeography_theme_settings[{{id}}][targets][]" value="{{{target}}}" />
+    <input type="hidden" name="vimeography_theme_settings[{{id}}][attributes][]" value="{{attribute}}" />
+    <input type="hidden" name="vimeography_theme_settings[{{id}}][expressions][{{{target}}}][{{attribute}}]" value="" />
+  {{/expressions}}
+
+  <input type="hidden" name="vimeography_theme_settings[{{id}}][namespace]" value="{{namespace}}" />
+</div>

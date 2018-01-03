@@ -1,0 +1,110 @@
+<?php
+
+namespace TheLion\OutoftheBox;
+
+class User {
+
+    /**
+     *
+     * @var \TheLion\OutoftheBox\Processor 
+     */
+    private $_processor;
+    private $_can_view = false;
+    private $_can_preview = false;
+    private $_can_download = false;
+    private $_can_download_zip = false;
+    private $_can_delete_files = false;
+    private $_can_delete_folders = false;
+    private $_can_rename_files = false;
+    private $_can_rename_folders = false;
+    private $_can_add_folders = false;
+    private $_can_upload = false;
+    private $_can_move = false;
+    private $_can_share = false;
+
+    public function __construct(\TheLion\OutoftheBox\Processor $_processor = null) {
+        $this->_processor = $_processor;
+        $this->_can_view = Helpers::check_user_role($this->get_processor()->get_shortcode_option('view_role'));
+
+        if ($this->can_view() === false) {
+            return;
+        }
+
+        $this->_can_preview = Helpers::check_user_role($this->get_processor()->get_shortcode_option('preview_role'));
+
+        $this->_can_download = Helpers::check_user_role($this->get_processor()->get_shortcode_option('download_role'));
+        $this->_can_download_zip = ($this->get_processor()->get_shortcode_option('can_download_zip') === '1') && $this->can_download();
+
+        if ($this->get_processor()->get_shortcode_option('delete') === '1') {
+            $this->_can_delete_files = Helpers::check_user_role($this->get_processor()->get_shortcode_option('deletefiles_role'));
+            $this->_can_delete_folders = Helpers::check_user_role($this->get_processor()->get_shortcode_option('deletefolders_role'));
+        }
+
+        if ($this->get_processor()->get_shortcode_option('rename') === '1') {
+            $this->_can_rename_files = Helpers::check_user_role($this->get_processor()->get_shortcode_option('renamefiles_role'));
+            $this->_can_rename_folders = Helpers::check_user_role($this->get_processor()->get_shortcode_option('renamefolders_role'));
+        }
+
+        $this->_can_add_folders = ($this->get_processor()->get_shortcode_option('addfolder') === '1') && Helpers::check_user_role($this->get_processor()->get_shortcode_option('addfolder_role'));
+        $this->_can_upload = ($this->get_processor()->get_shortcode_option('upload') === '1') && Helpers::check_user_role($this->get_processor()->get_shortcode_option('upload_role'));
+        $this->_can_move = ($this->get_processor()->get_shortcode_option('move') === '1') && Helpers::check_user_role($this->get_processor()->get_shortcode_option('move_role'));
+        $this->_can_share = ($this->get_processor()->get_shortcode_option('show_sharelink') === '1') && $this->can_download();
+    }
+
+    public function can_view() {
+        return $this->_can_view;
+    }
+
+    public function can_preview() {
+        return $this->_can_preview;
+    }
+
+    public function can_download() {
+        return $this->_can_download;
+    }
+
+    public function can_download_zip() {
+        return $this->_can_download_zip;
+    }
+
+    public function can_delete_files() {
+        return $this->_can_delete_files;
+    }
+
+    public function can_delete_folders() {
+        return $this->_can_delete_folders;
+    }
+
+    public function can_rename_files() {
+        return $this->_can_rename_files;
+    }
+
+    public function can_rename_folders() {
+        return $this->_can_rename_folders;
+    }
+
+    public function can_add_folders() {
+        return $this->_can_add_folders;
+    }
+
+    public function can_upload() {
+        return $this->_can_upload;
+    }
+
+    public function can_move() {
+        return $this->_can_move;
+    }
+
+    public function can_share() {
+        return $this->_can_share;
+    }
+
+    /**
+     * 
+     * @return \TheLion\OutoftheBox\Processor
+     */
+    public function get_processor() {
+        return $this->_processor;
+    }
+
+}

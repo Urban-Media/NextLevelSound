@@ -1,0 +1,67 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Vimeography Pro\n"
+"POT-Creation-Date: 2015-04-13 17:22-0500\n"
+"PO-Revision-Date: 2015-04-13 17:22-0500\n"
+"Last-Translator: Dave Kiss <dave@davekiss.com>\n"
+"Language-Team:  <support@vimeography.com>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.10\n"
+"X-Poedit-Basepath: ../\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: lib/admin/view/gallery/edit.php:48
+msgid "Your Vimeography Pro settings are missing for this gallery."
+msgstr ""
+
+#: lib/admin/view/gallery/edit.php:116
+msgid "Settings updated."
+msgstr ""
+
+#: lib/admin/view/gallery/edit.php:116
+msgid "Nice work. You are pretty good at this."
+msgstr ""
+
+#: lib/admin/view/gallery/list.php:47
+msgid "Your gallery could not be duplicated."
+msgstr ""
+
+#: lib/admin/view/gallery/list.php:50 lib/admin/view/gallery/list.php:74
+msgid "Ruh Roh."
+msgstr ""
+
+#: lib/admin/view/gallery/list.php:70
+msgid "Your gallery could not be deleted."
+msgstr ""
+
+#: lib/admin/view/gallery/new.php:37
+msgid "Your Vimeography Pro gallery settings could not be saved."
+msgstr ""
+
+#: lib/core/pro.php:51
+#, php-format
+msgid ""
+"Visit the <a href=\"%1$s\" title=\"Vimeography Pro\">Vimeography Pro</a> "
+"page to finish setting up Vimeography Pro."
+msgstr ""
+
+#: lib/shortcode.php:62
+msgid ""
+"The Vimeography gallery you are trying to load does not have pro settings."
+msgstr ""
+
+#: uninstall.php:4
+msgid "Plugin uninstallation can not be executed in this fashion."
+msgstr ""
+
+#: vimeography-pro.php:148
+#, php-format
+msgid ""
+"Vimeography Pro requires the basic version of Vimeography to be installed as "
+"well. <a href=\"%s\">Back to WordPress admin</a>"
+msgstr ""

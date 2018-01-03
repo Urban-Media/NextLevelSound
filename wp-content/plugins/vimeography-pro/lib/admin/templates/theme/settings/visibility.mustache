@@ -1,0 +1,20 @@
+<div class="vimeography-gallery-menu-setting vimeography-visibility {{id}}">
+  <div class="{{id}}" style="display: inline-block;">
+    <input
+      id="{{id}}-checkbox"
+      type="checkbox"
+      style="margin: 4px 6px;"
+    />
+
+  <input id="{{id}}" type="hidden" name="vimeography_theme_settings[{{id}}][value]" value="{{value}}" />
+
+  {{#properties}}
+    <input type="hidden" name="vimeography_theme_settings[{{id}}][targets][]" value="{{{target}}}" />
+    <input type="hidden" name="vimeography_theme_settings[{{id}}][attributes][]" value="{{attribute}}" />
+  {{/properties}}
+
+  <input type="hidden" name="vimeography_theme_settings[{{id}}][namespace]" value="{{namespace}}" />
+  </div>
+  <label for="{{id}}-checkbox" style="display: inline-block; padding: 6px 0 0 0;">{{label}}</label>
+
+</div>

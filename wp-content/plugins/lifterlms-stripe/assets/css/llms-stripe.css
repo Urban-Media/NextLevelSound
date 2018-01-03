@@ -1,0 +1,12 @@
+.llms-stripe-card.StripeElement {
+  border: 1px solid #d1d1d1;
+  border-radius: 4px;
+  padding: 6px 10px; }
+  .llms-stripe-card.StripeElement.StripeElement--invalid {
+    margin-bottom: 5px; }
+
+.llms-stripe-card-errors {
+  color: #e5554e;
+  text-align: center; }
+
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibGxtcy1zdHJpcGUuY3NzIiwic291cmNlcyI6WyJsbG1zLXN0cmlwZS5zY3NzIl0sInNvdXJjZXNDb250ZW50IjpbIi5sbG1zLXN0cmlwZS1jYXJkLlN0cmlwZUVsZW1lbnQge1xuICAgIGJvcmRlcjogMXB4IHNvbGlkICNkMWQxZDE7XG4gICAgYm9yZGVyLXJhZGl1czogNHB4O1xuICAgIHBhZGRpbmc6IDZweCAxMHB4O1xuXG4gICAgJi5TdHJpcGVFbGVtZW50LS1pbnZhbGlkIHtcblx0XHRtYXJnaW4tYm90dG9tOiA1cHg7XG4gICAgfVxufVxuXG4ubGxtcy1zdHJpcGUtY2FyZC1lcnJvcnMge1xuXHRjb2xvcjogI2U1NTU0ZTtcblx0dGV4dC1hbGlnbjogY2VudGVyO1xufVxuIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLEFBQUEsaUJBQWlCLEFBQUEsY0FBYyxDQUFDO0VBQzVCLE1BQU0sRUFBRSxpQkFBaUI7RUFDekIsYUFBYSxFQUFFLEdBQUc7RUFDbEIsT0FBTyxFQUFFLFFBQVEsR0FLcEI7RUFSRCxBQUtJLGlCQUxhLEFBQUEsY0FBYyxBQUszQix1QkFBd0IsQ0FBQztJQUMzQixhQUFhLEVBQUUsR0FBRyxHQUNmOztBQUdMLEFBQUEsd0JBQXdCLENBQUM7RUFDeEIsS0FBSyxFQUFFLE9BQU87RUFDZCxVQUFVLEVBQUUsTUFBTSxHQUNsQiJ9 */

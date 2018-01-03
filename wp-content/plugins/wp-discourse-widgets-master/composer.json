@@ -1,0 +1,29 @@
+{
+    "name": "vinkas/wp-discourse-widgets",
+    "description": "Discourse widgets plugin for WordPress",
+    "homepage": "https://github.com/vinkas0/wp-discourse-widgets",
+    "type": "wordpress-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vinoth Kannan",
+            "email": "vinothkannan@vinkas.com",
+            "homepage": "https://github.com/vinothkannans"
+        },
+        {
+            "name": "Vinkas",
+            "homepage": "http://vinkas.com"
+        }
+    ],
+    "keywords": ["discourse", "wordpress", "widget", "plugin"],
+    "support": {
+        "issues": "https://github.com/vinkas0/wp-discourse-widgets/issues"
+    },
+    "require": {
+        "php": ">=5.3",
+        "composer/installers": "1.0.*"
+    },
+    "require-dev": {
+        "php-mock/php-mock-phpunit": "^0.3"
+    }
+}

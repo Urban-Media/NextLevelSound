@@ -1,0 +1,159 @@
+# Copyright (C) 2017 lifterlms-gateway-paypal
+# This file is distributed under the same license as the lifterlms-gateway-paypal package.
+msgid ""
+msgstr ""
+"Project-Id-Version: lifterlms-gateway-paypal\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: LifterLMS <help@lifterlms.com>\n"
+"Last-Translator: Thomas Patrick Levy <thomas@lifterlms.com>\n"
+"Report-Msgid-Bugs-To: https://lifterlms.com/my-account/my-tickets\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: includes/class.llms.payment.gateway.paypal.php:129
+msgid "Allow customers to purchase courses and memberships using PayPal Express Checkout."
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:132
+msgid "Pay via PayPal"
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:149
+msgid "PayPal Sandbox can be used to process test transactions. Register for a developer account <a href=\"https://developer.paypal.com/\">here</a>."
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:150
+msgid "PayPal Sandbox"
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:186
+msgid "PayPal Email:"
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:255
+msgid "Reference transactions are not enabled for your PayPal account, please follow the instructions <a href=\"https://lifterlms.com/docs/lifterlms-paypal-reference-transactions\" target=\"_blank\">here</a> and try again later."
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:273
+msgid "Reference transactions are enabled on your PayPal account. Recurring access plans can now be purchased using PayPal."
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:352
+msgid "The PayPal billing agreement was not accepted. The pending order has been cancelled."
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:381
+msgid "PayPal Account"
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:387
+msgid "Charge Succeeded! PayPal Account ID: \"%s\". Transaction ID: %s"
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:440
+msgid "Free trial started"
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:461
+msgid "%s charge failed via PayPal!"
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:468
+msgid "%s charge succeeded via PayPal! [Transaction ID: %s]"
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:476
+msgid "Billing Agreement"
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:750
+msgid "Missing or invalid transaction."
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:784
+msgid "An unknown error was encountered while attempting to process the refund."
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:806
+msgid "PayPal Live API Credentials"
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:807
+msgid "Enter your PayPal API credentials to process transactions via PayPal. Learn how to access your PayPal API Credentials <a href=\"https://developer.paypal.com/webapps/developer/docs/classic/api/apiCredentials/#creating-classic-api-credentials\">here</a>."
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:812, includes/class.llms.payment.gateway.paypal.php:834
+msgid "API Username"
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:813, includes/class.llms.payment.gateway.paypal.php:835
+msgid "API Password"
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:814, includes/class.llms.payment.gateway.paypal.php:836
+msgid "API Signature"
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:828
+msgid "PayPal Sandbox API Credentials"
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:829
+msgid "Enter your PayPal Sandbox API credentials to process transactions via PayPal is in Sandbox mode. Learn how to access your PayPal API Credentials <a href=\"https://developer.paypal.com/webapps/developer/docs/classic/api/apiCredentials/#creating-classic-api-credentials\">here</a>."
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:849
+msgid "Additional Options"
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:856
+msgid "Invoice Prefix"
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:863
+msgid "Page Style"
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:875
+msgid "<a href=\"%s\" target=\"_blank\">Reference Transactions</a> are required to process transactions for recurring access plans. Click the button below to check if they are enabled on your PayPal Account."
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:876
+msgid "Check Now"
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:883
+msgid "Activation Key"
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:884
+msgid "Required for support and automated plugin updates. Located on your %sLifterLMS Account Settings page%s."
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:896
+msgid "Install the %s to start receiving automatic updates for this extension."
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:921
+msgid "PayPal cannot process transactions for less than %s"
+msgstr ""
+
+#: includes/class.llms.payment.gateway.paypal.php:923
+msgid "PayPal cannot process transactions for more than %s"
+msgstr ""
+
+#: includes/class.llms.paypal.request.php:115
+msgctxt "billing agreement description for PayPal"
+msgid "Orders with %s"
+msgstr ""
+
+#: includes/class.llms.paypal.request.php:244
+msgctxt "PayPal Item Description"
+msgid "Access Plan: %s"
+msgstr ""
