@@ -92,10 +92,6 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
   </a>
 
 	<footer class="llms-loop-item-footer">
-    <div class="nls_course_catalogue_author">
-      Mentor: <?php echo lifterlms_template_loop_author(); ?>
-    </div>
-
 		<?php
 			/**
 			 * lifterlms_after_loop_item_title

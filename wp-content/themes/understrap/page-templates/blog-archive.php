@@ -100,7 +100,7 @@ get_header();
 
                         <div class="blog_excerpt text-center">
                           <?php
-                          the_excerpt(); //echo $mostRecentPost[0]['post_excerpt'];
+                          //the_excerpt(); //echo $mostRecentPost[0]['post_excerpt'];
                           ?>
                         </div>
                       </div>
@@ -160,7 +160,7 @@ get_header();
 
                         <div class="blog_excerpt text-center">
                           <?php
-                          the_excerpt(); //echo $recentPost['post_excerpt'];
+                          //the_excerpt(); //echo $recentPost['post_excerpt'];
                           ?>
                         </div>
                       </div>

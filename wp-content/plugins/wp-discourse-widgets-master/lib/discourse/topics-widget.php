@@ -86,7 +86,7 @@ class Topics_Widget extends Discourse_Widget {
         }
         if($topic->pinned_globally == false) {
           $topic_url = $url . "/t/" . $topic->slug . "/" . $topic->id;
-          echo '<li class="discourse_topic"><a class="greyer_text forum_topic" target="_blank" rel="noopener" href="' . $topic_url . '">' . $topic->title . '</a> <span class="discourse_topic_author section_subtitle">@' . $topic->last_poster_username . '</span></li>';
+          echo '<li class="discourse_topic"><a class="greyer_text forum_topic" target="_blank" rel="noopener" href="' . $topic_url . '">' . $topic->title . '</a> <span class="discourse_topic_author section_subtitle">@' . $topic->last_poster_username . '</span><hr class="nls_discourse_hr"></li>';
           $i += 1;
         }
       }

@@ -364,7 +364,7 @@ $mentorsBackgroundImage = get_field('bio_background_image');
 
 <div class="container-fluid">
   <div class="row frontpage" style="background-size: cover; background-image: url('<?php echo get_template_directory_uri(); ?>/img/wave_bg.png');">
-    <?php
+    <!--<?php
 		/*
 		 * Get list of courses to display on the front page
 		 *
@@ -389,7 +389,6 @@ $mentorsBackgroundImage = get_field('bio_background_image');
     foreach ($coursesLoop as $course) {
     ?>
 
-    <!--<div class="col-md-3 <?php if ($i % 2 == 0) { ?>offset-md-2<?php } ?> text-center">-->
 		<div class="col-md-3 offset-md-2 text-center">
 
       <div class="llms-loop-item-content nls_course_nav nls_course_catalogue_loop" style="width: fit-content;" data-mh="courses">
@@ -436,7 +435,56 @@ $mentorsBackgroundImage = get_field('bio_background_image');
       </div>
       <?php
       }
-      ?>
+      ?>-->
+
+
+	    <?php
+			/*
+			 * Get list of courses to display on the front page
+			 *
+			 */
+			if (is_plugin_active('lifterlms/lifterlms.php')) {
+				if(have_rows('course_select')) {
+					while(have_rows('course_select')) { the_row();
+						$course = get_sub_field('course');
+						?>
+						<div class="col-md-3 offset-md-2 text-center">
+				      <div class="llms-loop-item-content nls_course_nav nls_course_catalogue_loop" style="width: fit-content;" data-mh="courses">
+
+
+								<?php
+				        $featuredImage = wp_get_attachment_image_src( get_post_thumbnail_id( $course ), 'thumbnail' );
+				        ?>
+				        <div class="nls_course_catalogue_image_spacer">
+				          <div class="nls_course_catalogue_image" style="background-image: url('<?php echo $featuredImage[0]; ?>');"></div>
+				        </div>
+
+				      	<h4 class="nls_course_catalogue_title uppercase text-center"><?php echo get_the_title($course); ?></h4>
+
+								<?php
+				        if (get_field('course_brief', $course)) {
+				        ?>
+				          <div class="nls_course_catalogue_brief text-center" data-mh="course-briefs">
+				            <?php the_field('course_brief', $course); ?>
+				          </div>
+				        <?php
+				        }
+				        ?>
+
+				        <a href="<?php the_sub_field('overview_page'); ?>" class="sideblock_link">
+				          <div class="nls_rounded_button teal_button white_text uppercase text-center sideblock_button" style="padding-left: 20px; padding-right: 20px;">
+				            Find out more
+				          </div>
+				        </a>
+
+
+				      </div>
+						</div>
+						<?php
+					}
+				}
+			}
+			?>
 
     </div>
 </div>
@@ -476,13 +524,24 @@ $questionsBackgroundImage = get_field('questions_background_image');
 				        </a>
 							</div>
 							<div class="col-md-6 col-12 text-center">
-								<a href="#" class="sideblock_link">
-									<div class="nls_rounded_button white_button teal_text teal_border uppercase text-center sideblock_button" style="padding-left: 20px; padding-right: 20px;">
+								<!--<a href="#" class="sideblock_link">-->
+									<div data-target="#enquiry" data-toggle="collapse" aria-expanded="false" aria-controls="enquiry" class="sideblock_link nls_rounded_button white_button teal_text teal_border uppercase text-center sideblock_button" style="padding-left: 20px; padding-right: 20px;">
 										Send An Enquiry
 									</div>
-								</a>
+								<!--</a>-->
 							</div>
 						</div>
+
+						<div class="row">
+								<div class="col-12">
+									<div class="collapse" id="enquiry">
+										<?php
+										echo do_shortcode('[gravityform id=3 title=false description=false ajax=true tabindex=49]');
+										?>
+									</div>
+								</div>
+						</div>
+
           </div>
         </div>
       </div>

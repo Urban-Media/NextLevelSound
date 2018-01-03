@@ -179,12 +179,104 @@
    cursor: pointer;
  }
 
+.name_first ~ label {
+  display: none;
+}
+
 .study_options_block {
   padding-top: 80px !important;
 }
 
 .ways_to_study_block {
   max-width: 360px;
+  position: relative;
+}
+
+.course_study_options_footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding-bottom: 10px;
+  background-color: $greyer;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color: $medium-grey;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  line-height: 1;
+  letter-spacing: 1.2px;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+}
+
+.buy_courses_options {
+  background: #ffffff !important;
+  margin: 10px;
+  padding-bottom: 10px;
+
+  &:hover {
+    background: #ffffff !important;
+  }
+}
+
+.ways_to_pay {
+  color: $medium-grey !important;
+  line-height: 1;
+  letter-spacing: 1.2px;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+}
+
+.ways_to_pay_or {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 30%;
+}
+
+.one_payment {
+  border: 1px solid $dark-grey;
+  border-radius: 10px;
+  padding: 20px;
+  font-family: "Raleway", sans-serif;
+  font-size: 36px;
+  color: $title;
+  font-weight: bold;
+}
+
+.one_payment_subtitle {
+  display: block;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  color: #303234;
+  font-weight:normal;
+}
+
+.multi_payment {
+  border-radius: 10px;
+  padding: 20px;
+  background-color: $teal;
+}
+
+.multi_payment_subtitle {
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  color: $dark-blue;
+}
+
+.payment_options_select {
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
+  font-family: "Raleway", sans-serif;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 .not_ready_yet_block {
@@ -720,12 +812,20 @@
 .course_study_options_title {
   padding-top: 10px;
   padding-bottom: 10px;
+  background-color: $teal;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.course_study_list {
+  margin-bottom: 60px;
 }
 
 .course_study_options {
   list-style: none;
   padding-left: 15px;
   padding-right: 15px;
+  padding-top: 30px;
 }
 
 .course_study_option {
@@ -972,6 +1072,7 @@
 
 .course_success_subtitle {
   letter-spacing: 2px;
+  color: white !important;
 }
 
 .course_success_content {
@@ -1886,6 +1987,12 @@
   color: $title;
 }
 
+.nls_discourse_hr {
+    line-height: 1;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 .discourse_topic_list {
   list-style: none;
 }
@@ -1918,6 +2025,18 @@
   &:visited {
     color: white;
   }
+}
+
+.graduates_content {
+  padding-bottom: 20px;
+}
+
+.study_block_content {
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
+  color: $grey-brief;
+  letter-spacing: 2px;
+  line-height: 1.9;
 }
 
 .frontpage_block {

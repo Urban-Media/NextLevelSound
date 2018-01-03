@@ -297,11 +297,11 @@ $mentorImage = get_field('mentor_image');
 				<div class="col-12 col-md-10 mr-auto ml-auto">
 					<div class="row">
 					<!-- Study options block -->
-					<div class="col-12 col-md-6 col-lg-4 mr-auto ml-auto text-center" data-mh="studyOptions">
-						<div class="llms-loop-item-content nls_course_nav nls_course_catalogue_loop ways_to_study_block" data-mh="courses">
+					<div class="col-12 col-md-4 col-lg-4 mr-auto ml-auto text-center" data-mh="studyOptions">
+						<div class="buy_courses_options nls_course_nav ways_to_study_block" data-mh="courses">
 
-			        <div class="section_subtitle uppercase course_success_subtitle course_study_options_title">
-			          Live Lessons
+			        <div class="section_subtitle uppercase course_success_subtitle course_study_options_title white_text">
+			          Course Features
 			        </div>
 
 			        <div class="course_study_list">
@@ -320,52 +320,53 @@ $mentorImage = get_field('mentor_image');
 			          </ul>
 			        </div>
 
-							<?php
-							$course = get_field('course');
-							$product = new LLMS_Product( $course->ID );
-							$accessPlans = $product->get_access_plans(true);
-							//var_dump($accessPlans);
-							$accessPlan = new LLMS_Access_Plan($accessPlans[0]);
-							$checkoutURL = $accessPlan->get_checkout_url();
-							?>
-
-			        <a href="<?php echo $checkoutURL; ?>" class="sideblock_link">
-			          <div class="nls_rounded_button teal_button white_text uppercase text-center sideblock_button">
-			            Sign Me Up
-			          </div>
-			        </a>
+							<div class="course_study_options_footer uppercase">
+								Bonus - Now with lifetime access to course updates
+							</div>
 
 			      </div>
 					</div>
 
-					<div class="col-12 col-md-6 col-lg-4 mr-auto ml-auto text-center" data-mh="studyOptions">
-						<div class="llms-loop-item-content nls_course_nav nls_course_catalogue_loop ways_to_study_block" data-mh="courses">
+					<div class="col-12 col-md-8 col-lg-8 mr-auto ml-auto text-center" data-mh="studyOptions">
+						<div class="buy_courses_options nls_course_nav nls_course_catalogue_loop" data-mh="courses">
 
-							<div class="section_subtitle uppercase course_success_subtitle course_study_options_title">
-								Self Study
+							<div class="section_subtitle uppercase ways_to_pay">
+								Different Ways To Pay
 							</div>
 
-							<div class="course_study_list">
-								<ul class="course_study_options">
-								<?php
-								if (have_rows('self_study_points')) {
-									while (have_rows('self_study_points')) { the_row();
-										?>
-										<li class="course_study_option">
-											<?php the_sub_field('self_study_point'); ?>
-										</li>
-										<?php
-									}
-								}
-								?>
-								</ul>
-							</div>
+							<div class="nls_payment_options">
+								<div class="container">
+									<div class="row">
+										<div class="col-5">
+											<div class="one_payment" data-mh="paymentOptions">
+												$1,950
+												<span class="one_payment_subtitle uppercase">
+													One Payment
+												</span>
+											</div>
+										</div>
+										<div class="col-2">
+											<div class="ways_to_pay_or text-center">
+												OR
+											</div>
+										</div>
+										<div class="col-5">
+											<div class="multi_payment" data-mh="paymentOptions">
+												<div class="multi_payment_subtitle uppercase">
+													Pay in installments
+												</div>
 
-							<a href="<?php echo $checkoutURL; ?>" class="sideblock_link">
-								<div class="nls_rounded_button teal_button white_text uppercase text-center sideblock_button">
-									Sign Me Up
+												<div class="multi_payment_options">
+													<select class="payment_options_select">
+														<option>3 Months - $650</option>
+														<option>6 Months - $325</option>
+													</select>
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
-							</a>
+							</div>
 
 						</div>
 					</div>
@@ -376,32 +377,17 @@ $mentorImage = get_field('mentor_image');
 					<div class="col-12">
 			      <div class="container">
 			        <div class="row study_block">
-			          <div class="col-1">
-			            <span class="collapse_expand" data-target="#graduates" data-toggle="collapse" aria-expanded="true" aria-controls="graduates">
-			              <img src="<?php echo get_template_directory_uri(); ?>/img/minus.png" class="plus_minus">
-			            </span>
-			          </div>
-			          <div class="col-11">
-			            <div class="study_block_title" data-target="#graduates" data-toggle="collapse" aria-expanded="true" aria-controls="graduates">
+			          <div class="col-12">
+			            <div class="study_block_title">
 			              *Graduates Club
 			            </div>
-			            <div class="collapse in graduates_content study_block_content" id="graduates">
+			            <div class="graduates_content study_block_content">
 			              <?php the_field('graduates_club_content'); ?>
 			            </div>
-			          </div>
-			        </div>
-
-			        <div class="row study_block last_study_block">
-			          <div class="col-1">
-			            <span class="collapse_expand" data-target="#masterclasses" data-toggle="collapse" aria-expanded="false" aria-controls="masterclasses">
-			              <img src="<?php echo get_template_directory_uri(); ?>/img/plus.png" class="plus_minus">
-			            </span>
-			          </div>
-			          <div class="col-11">
-			            <div class="study_block_title" data-target="#masterclasses" data-toggle="collapse" aria-expanded="false" aria-controls="masterclasses">
+									<div class="study_block_title">
 			              **Additional Masterclasses
 			            </div>
-			            <div class="collapse masterclasses_content study_block_content" id="masterclasses">
+			            <div class="masterclasses_content study_block_content">
 			              <?php the_field('additional_masterclasses_content'); ?>
 			            </div>
 			          </div>
