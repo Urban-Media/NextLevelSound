@@ -65,7 +65,7 @@
           <div class="row">
             <div class="col-12">
               <h2 class="section_subheader text-center">
-                Sign Up To Our Newsletter
+                Sign Up To A Free Trial Course
               </h2>
             </div>
           </div>

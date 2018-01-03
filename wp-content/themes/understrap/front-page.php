@@ -363,7 +363,7 @@ $mentorsBackgroundImage = get_field('bio_background_image');
 </div>
 
 <div class="container-fluid">
-  <div class="row frontpage" style="background-size: contain; background-image: url('<?php echo get_template_directory_uri(); ?>/img/wave_bg.png');">
+  <div class="row frontpage" style="background-size: cover; background-image: url('<?php echo get_template_directory_uri(); ?>/img/wave_bg.png');">
     <?php
 		/*
 		 * Get list of courses to display on the front page
@@ -414,11 +414,11 @@ $mentorsBackgroundImage = get_field('bio_background_image');
         ?>
 
         <?php
-        $product = new LLMS_Product( $course );
+        /*$product = new LLMS_Product( $course );
         $accessPlans = $product->get_access_plans(true);
         //var_dump($accessPlans);
         $accessPlan = new LLMS_Access_Plan($accessPlans[0]);
-        $checkoutURL = $accessPlan->get_checkout_url();
+        $checkoutURL = $accessPlan->get_checkout_url();*/
         ?>
 
         <a href="<?php echo $checkoutURL; ?>" class="sideblock_link">
@@ -431,11 +431,6 @@ $mentorsBackgroundImage = get_field('bio_background_image');
     			'product' => new LLMS_Product( $course ),
     		) );*/ ?>
 
-      	<footer class="llms-loop-item-footer">
-          <div class="nls_course_catalogue_author">
-            Mentor: <?php echo lifterlms_template_loop_author($course); ?>
-          </div>
-        </footer>
       </div>
 
       </div>

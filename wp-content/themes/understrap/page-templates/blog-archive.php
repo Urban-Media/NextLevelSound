@@ -7,6 +7,8 @@
  */
 global $post;
 get_header();
+
+//$the_query = new WP_Query( 'paged=' . $paged );
 ?>
 
 <div class="container" style="padding-top: 30px;">
@@ -65,52 +67,115 @@ get_header();
          * Get the very most recent post
          */
         $mostRecentPostArgs = array(
-          'numberposts'   => 1,
-          'post_type'     => 'post'
+          'posts_per_page'           => 1,
+          'posts_per_archive_page'   => 1,
+          'post_type'                => 'post',
+          'post_status'              => 'publish',
+          'paged'                    => get_query_var('page')
         );
 
-        $mostRecentPost = wp_get_recent_posts( $mostRecentPostArgs, ARRAY_A );
-        ?>
-        <div class="blog_primary_featured_post nls_course_nav blog_archive_block">
-          <a href="<?php echo get_permalink($mostRecentPost[0]['ID']); ?>">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-md-7 col-12" style="padding-left: 0px !important; padding-right: 0px !important;">
-                  <?php
-                  echo get_the_post_thumbnail($mostRecentPost[0]['ID'], 'primary_blog_post_thumbnail', array('class' => 'blog_primary_image'));
-                  ?>
-                </div>
-                <div class="col-md-5 col-12" style="padding-left: 0px !important; padding-right: 0px !important;">
-                  <div class="blog_primary_content">
-                    <div class="blog_title text-center">
+        //$mostRecentPost = wp_get_recent_posts( $mostRecentPostArgs, ARRAY_A );
+        $mostRecentPost = new WP_Query($mostRecentPostArgs);
+
+        if ($mostRecentPost->have_posts()) {
+          while ($mostRecentPost->have_posts()) {
+            $mostRecentPost->the_post();
+            ?>
+            <div class="blog_primary_featured_post nls_course_nav blog_archive_block">
+              <a href="<?php echo get_permalink(get_the_ID()); //echo get_permalink($mostRecentPost[0]['ID']); ?>">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-md-7 col-12" style="padding-left: 0px !important; padding-right: 0px !important;">
                       <?php
-                      echo $mostRecentPost[0]['post_title'];
+                      echo get_the_post_thumbnail(get_the_ID(), 'primary_blog_post_thumbnail', array('class' => 'blog_primary_image')); //echo get_the_post_thumbnail($mostRecentPost[0]['ID'], 'primary_blog_post_thumbnail', array('class' => 'blog_primary_image'));
                       ?>
                     </div>
+                    <div class="col-md-5 col-12" style="padding-left: 0px !important; padding-right: 0px !important;">
+                      <div class="blog_primary_content">
+                        <div class="blog_title text-center">
+                          <?php
+                          the_title(); //echo $mostRecentPost[0]['post_title'];
+                          ?>
+                        </div>
 
-                    <div class="blog_excerpt text-center">
-                      <?php
-                      echo $mostRecentPost[0]['post_excerpt'];
-                      ?>
+                        <div class="blog_excerpt text-center">
+                          <?php
+                          the_excerpt(); //echo $mostRecentPost[0]['post_excerpt'];
+                          ?>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </a>
             </div>
-          </a>
+        <?php
+          }
+        }
+
+
+        /*
+         * Get the next two most recent posts
+         */
+        /*$nextMostRecentPostArgs = array(
+          'numberposts'   => 2,
+          'offset'        => 1,
+          'post_type'     => 'post',
+          'paged'         => $paged
+        );*/
+        $nextMostRecentPostArgs = array(
+          'offset'                   => 1,
+          'posts_per_page'           => 2,
+          'posts_per_archive_page'   => 2,
+          'post_type'                => 'post',
+          'post_status'              => 'publish',
+          'paged'                    => get_query_var('page')
+        );
+
+        //$nextMostRecentPosts = wp_get_recent_posts( $nextMostRecentPostArgs, ARRAY_A );
+        $nextMostRecentPosts = new WP_Query($nextMostRecentPostArgs);
+        ?>
+
+        <div class="container-fluid blog_secondary_posts">
+          <div class="row justify-content-between">
+            <?php
+            if ($nextMostRecentPosts->have_posts()) {
+              while ($nextMostRecentPosts->have_posts()) {
+                $nextMostRecentPosts->the_post();
+                ?>
+                <div class="col-md-5 col-12 nls_course_nav no-hor-padding blog_archive_block">
+                  <a href="<?php echo get_permalink(get_the_ID()); ?>">
+                    <div class="blog_secondary_container">
+                      <div class="blog_secondary_image">
+                        <?php
+                        echo get_the_post_thumbnail(get_the_ID(), 'full', array('class' => 'blog_secondary_image')); //echo get_the_post_thumbnail($recentPost['ID'], 'full', array('class' => 'blog_secondary_image'));
+                        ?>
+                      </div>
+                      <div class="blog_secondary_content">
+                        <div class="blog_title text-center">
+                          <?php
+                          the_title(); //echo $recentPost['post_title'];
+                          ?>
+                        </div>
+
+                        <div class="blog_excerpt text-center">
+                          <?php
+                          the_excerpt(); //echo $recentPost['post_excerpt'];
+                          ?>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                <?php
+              }
+            }
+            ?>
+          </div>
         </div>
 
         <?php
         /*
-         * Get the next two most recent posts
-         */
-        $nextMostRecentPostArgs = array(
-          'numberposts'   => 2,
-          'offset'        => 1,
-          'post_type'     => 'post'
-        );
-
-        $nextMostRecentPosts = wp_get_recent_posts( $nextMostRecentPostArgs, ARRAY_A );
         $j = 1;
         ?>
         <div class="container-fluid blog_secondary_posts">
@@ -148,20 +213,62 @@ get_header();
             ?>
           </div>
         </div>
+        */
+        ?>
 
         <?php
         /*
          * Get the rest of the most recent posts
          */
-        $otherRecentPostsArgs = array(
-          /*'numberposts'   => 2,*/
+        /*$otherRecentPostsArgs = array(
+          //'numberposts'   => 2,
           'offset'        => 3,
-          'post_type'     => 'post'
+          'post_type'     => 'post',
+          'paged'         => $paged
+        );*/
+        $otherRecentPostsArgs = array(
+          'offset'                   => 3,
+          'posts_per_page'           => 6,
+          'posts_per_archive_page'   => 6,
+          'post_type'                => 'post',
+          'post_status'              => 'publish',
+          'paged'                    => get_query_var('page')
         );
 
-        $otherRecentPosts = wp_get_recent_posts( $otherRecentPostsArgs, ARRAY_A );
+
+        $otherRecentPosts = new WP_Query($otherRecentPostsArgs); //$otherRecentPosts = wp_get_recent_posts( $otherRecentPostsArgs, ARRAY_A );
         ?>
 
+        <div class="container">
+          <div class="row">
+            <?php
+            //foreach($otherRecentPosts as $recentPost) {
+            if ($otherRecentPosts->have_posts()) {
+              while ($otherRecentPosts->have_posts()) {
+                $otherRecentPosts->the_post();
+                ?>
+                <div class="col-md-3 col-12 nls_course_nav no-hor-padding blog_tertiary_container blog_archive_block">
+                  <div class="">
+                    <a href="<?php echo get_permalink(get_the_ID()); ?>">
+                      <div class="blog_tertiary_image">
+                        <?php
+                        echo get_the_post_thumbnail(get_the_ID(), 'full', array('class' => 'blog_secondary_image')); //echo get_the_post_thumbnail($recentPost['ID'], 'full', array('class' => 'blog_secondary_image'));
+                        ?>
+                      </div>
+                      <div class="blog_title text-center blog_tertiary_content">
+                        <?php the_title(); //echo $recentPost['post_title']; ?>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <?php
+              }
+            }
+            ?>
+          </div>
+        </div>
+
+        <?php /*
         <div class="container">
           <div class="row">
             <?php
@@ -186,11 +293,16 @@ get_header();
             ?>
           </div>
         </div>
-        <?php /*while ( have_posts() ) : the_post(); ?>
+        */ ?>
 
-          <?php get_template_part( 'loop-templates/content', 'page' ); ?>
 
-        <?php endwhile;*/ // end of the loop. ?>
+      </div>
+
+      <div class="get_more_posts">
+        GET NEW POSTS
+        <?php
+        next_posts_link( 'More' , $otherRecentPosts->max_num_pages);
+        ?>
       </div>
 
     </div>

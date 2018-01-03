@@ -219,6 +219,13 @@ function upsell_sidebar() {
     ) );
 }
 
+// Remove the 'Read More' button for the_excerpt()
+function new_excerpt_more($more) {
+    global $post;
+	  return '';
+}
+add_filter('excerpt_more', 'new_excerpt_more');
+
 
 /*
  * Custom shortcodes
