@@ -365,6 +365,12 @@ $mentorImage = get_field('mentor_image');
 											</div>
 										</div>
 									</div>
+
+									<div class="row">
+										<?php $atts = array(); ?>
+										<?php echo do_shortcode('[lifterlms_checkout cols="2"]'); ?>
+									</div>
+
 								</div>
 							</div>
 
