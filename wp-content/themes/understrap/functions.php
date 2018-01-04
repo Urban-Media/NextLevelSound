@@ -91,17 +91,17 @@ require get_template_directory() . '/inc/editor.php';
 function load_custom_scripts() {
     wp_register_script('matchHeight', get_template_directory_uri() . '/js/jquery.matchHeight-min.js', array('jquery'), false);
     wp_register_script('global', get_template_directory_uri() . '/js/global.js', array('jquery'), false);
-    //wp_register_script('courseOverview', get_template_directory_uri() . '/js/course_overview.js', array('jquery'), false);
+    wp_register_script('courseOverview', get_template_directory_uri() . '/js/course_overview.js', array('jquery'), false);
 
     wp_enqueue_script('matchHeight', get_template_directory_uri() . '/js/jquery.matchHeight-min.js', array('jquery'), false);
     wp_enqueue_script('global', get_template_directory_uri() . '/js/global.js', array('jquery'), false);
 
     // Only load courseOverview.js on course overview template pages
-    /*if(is_page_template('page-templates/course-overview.php')) {
+    if(is_page_template('page-templates/course-overview.php')) {
       wp_enqueue_script('courseOverview', get_template_directory_uri() . '/js/course_overview.js', array('jquery'), false);
       $translation_array = array( 'templateUrl' => get_stylesheet_directory_uri() );
       wp_localize_script( 'courseOverview', 'globalVars', $translation_array );
-    }*/
+    }
 }
 
 add_action('wp_enqueue_scripts', 'load_custom_scripts');

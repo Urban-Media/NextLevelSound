@@ -17,12 +17,12 @@ get_header();
 
 						<div class="white_text uppercase title text-center ready_next_level">
 							I'm ready to go to the next level! &nbsp; &nbsp; &nbsp;
-							<a href="<?php echo get_post_type_archive_link('course'); ?>" class="sideblock_link">
+							<a class="sideblock_link view_study_options">
 								<span class="nls_rounded_button white_button teal_text uppercase text-center sideblock_button study_options" style="padding-left: 20px; padding-right: 20px;">
 									View Study Options
 								</span>
-							</a>
-						</div>
+							</div>
+						</a>
 
 		</div>
 	</div>
@@ -37,7 +37,7 @@ get_header();
   <div class="container">
     <div class="row">
       <div class="col-12 text-center">
-        <div class="section_subtitle uppercase">
+        <div class="section_subtitle uppercase content_subheading_padding">
           Course Overview
         </div>
         <div class="section_title course_module_title">
@@ -48,7 +48,9 @@ get_header();
 
     <div class="row" style="padding-top: 30px;">
       <div class="col-md-6 col-12">
-        <?php the_field('overview_content'); ?>
+				<div class="course_overview_text">
+        	<?php the_field('overview_content'); ?>
+				</div>
       </div>
 
       <div class="col-md-6 col-12">
@@ -82,7 +84,7 @@ get_header();
 <div class="container-fluid">
   <div class="row course_contents_banner">
     <div class="col-12">
-      <div class="uppercase white_text text-center">
+      <div class="uppercase white_text text-center course_contents_header">
         Course Contents
       </div>
       <h2 class="section_title white_text text-center">
@@ -132,7 +134,7 @@ if (have_rows('modules')) {
       </div>
       <div class="row text-center">
         <div class="col-12">
-          <div class="section_subtitle uppercase course_success_subtitle">
+          <div class="section_subtitle uppercase course_end_subtitle">
             At the end of <?php the_sub_field('module_title'); ?> you'll be able to:
           </div>
         </div>
@@ -212,7 +214,7 @@ $mentorImageMobile = get_field('mentor_image_mobile');
 
         <div class="row frontpage_courses bio_row">
           <div class="col-md-6 offset-md-3 col-12 text-center">
-						<div class="section_subtitle uppercase grey_text">
+						<div class="section_subtitle uppercase grey_text content_subheading_padding">
 							Testimonials
 						</div>
 						<div class="section_title">
@@ -275,7 +277,7 @@ $mentorImageMobile = get_field('mentor_image_mobile');
       <div class="container frontpage_block study_options_block">
 
         <div class="row frontpage_courses bio_row">
-          <div class="col-md-6 offset-md-3 col-12 text-center">
+          <div class="col-md-8 offset-md-2 col-12 text-center">
 						<div class="section_subtitle uppercase grey_text">
 							Your Study Options
 						</div>
@@ -304,7 +306,7 @@ $mentorImageMobile = get_field('mentor_image_mobile');
 					<div class="col-12 col-md-4 col-lg-4 mr-auto ml-auto text-center" data-mh="studyOptions">
 						<div class="buy_courses_options nls_course_nav ways_to_study_block" data-mh="courses">
 
-			        <div class="section_subtitle uppercase course_success_subtitle course_study_options_title white_text">
+			        <div class="section_subtitle uppercase course_success_subtitle course_study_options_title white_text full_opacity">
 			          Course Features
 			        </div>
 

@@ -219,7 +219,7 @@ $mentorsBackgroundImage = get_field('bio_background_image');
           <div class="col-12">
 						<div class="row bio_row">
 							<div class="col-12 text-center">
-		            <div class="section_subtitle uppercase white_text">
+		            <div class="section_subtitle uppercase white_text biographies_subtitle">
 		              Biographies
 		            </div>
 		            <div class="section_title white_text">

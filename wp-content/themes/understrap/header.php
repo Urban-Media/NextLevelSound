@@ -16,7 +16,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 /*$heroBackgroundImageClass = (is_page(79)) ? "hero_header_home" : "hero_header";*/
 if (is_page(79)) {
 	$heroBackgroundImageClass = "hero_header_home";
-} elseif (is_page_template('page-templates/course-overview.php') || (get_post_type() == 'post')) {
+} elseif (is_page_template('page-templates/course-overview.php') || (get_post_type() == 'post') || is_archive() || is_page(62)) {
 	$heroBackgroundImageClass = "hero_header_course_overview";
 } else {
 	$heroBackgroundImageClass = "hero_header";
@@ -117,8 +117,10 @@ if (strlen($heroBackgroundImage['url']) < 1) {
 								$subTitleClass = "subpage_header_title";
 								if (is_page(79)) {
 									$subTitleClass = "homepage_header_title";
-								} elseif (get_post_type() == 'post') {
+								} elseif (get_post_type() == 'post' || is_page(62)) {
 									$subTitleClass = "blog_header_title";
+								} elseif (is_page_template('page-templates/course-overview.php')) {
+									$subTitleClass = "course_header_title";
 								}
 								/*
 								 * This section only shows if you are within a lesson
@@ -171,10 +173,10 @@ if (strlen($heroBackgroundImage['url']) < 1) {
 
 									 if (is_post_type_archive('course')) {
 										 echo "Course Library";
-									 } else if (is_page_template('page-templates/course-overview.php')) {
+									 } /*else if (is_page_template('page-templates/course-overview.php')) {
 										 // There should be an ACF field on course overview pages
 										 the_field('overview_title');
-									 } else if (is_archive()) {
+									 }*/ else if (is_archive()) {
 										 the_archive_title();
 									 } else {
 										 echo (strlen($customTitle) > 0) ? $customTitle : the_title();

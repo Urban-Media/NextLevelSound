@@ -27,21 +27,29 @@ get_header();
 
             <?php
             /*
-             * First display all categories here - there should be a fixed
-             * amount of 4
+             * First display all categories here - this is a fixed list
              */
-            $categories = get_categories();
-            //var_dump($categories);
+            $catArgs = array(
+              'include' => array(17,18,19,20)
+            );
+            $categories = get_categories($catArgs);
             $catTotal = count($categories);
+
+            // Categories are not arranged in the desired order by themselves
+            // and Wordpress orderby support is limited, so rearrange order here
+            $keysDesiredOrder = array(2,1,0,3);
+            $catsRearranged = array_combine( $keysDesiredOrder, $categories );
+            ksort($catsRearranged);
+
             $i = 1;
-            foreach($categories as $category) {
+            foreach($catsRearranged as $category) {
               $thumbnailProperties = new stdClass();
               $thumbnailProperties = json_decode($category->term_thumbnail);
               //var_dump($thumbnailProperties);
               ?>
               <div class="col-md-3 col-12">
                 <div class="nls_course_nav no-hor-padding blog_archive_block">
-                  <a href="<?php echo get_category_link($category->cat_ID); ?>">
+                  <a href="<?php echo get_category_link($category->cat_ID); ?>" class="no_hover_underline">
                     <?php
                     if (is_object($thumbnailProperties)) { ?>
                     <img src="<?php echo $thumbnailProperties->sizes->thumbnail->url; ?>" alt="<?php echo $thumbnailProperties->alt; ?>" title="<?php echo $thumbnailProperties->title; ?>" style="border-top-left-radius: 10px;
@@ -88,7 +96,7 @@ get_header();
             $mostRecentPost->the_post();
             ?>
             <div class="blog_primary_featured_post nls_course_nav blog_archive_block">
-              <a href="<?php echo get_permalink(get_the_ID()); //echo get_permalink($mostRecentPost[0]['ID']); ?>">
+              <a href="<?php echo get_permalink(get_the_ID()); //echo get_permalink($mostRecentPost[0]['ID']); ?>" class="no_hover_underline">
                 <div class="container-fluid">
                   <div class="row">
                     <div class="col-md-7 col-12" style="padding-left: 0px !important; padding-right: 0px !important;">
@@ -151,7 +159,7 @@ get_header();
                 ?>
                 <div class="col-md-6 col-12">
                   <div class="nls_course_nav blog_archive_block" data-mh="blogSecondaryContainer">
-                    <a href="<?php echo get_permalink(get_the_ID()); ?>">
+                    <a href="<?php echo get_permalink(get_the_ID()); ?>" class="no_hover_underline">
                       <div class="blog_secondary_container">
                         <div class="blog_secondary_image">
                           <?php
@@ -266,7 +274,7 @@ get_header();
                 ?>
                 <div class="col-md-4 col-12">
                   <div class="nls_course_nav no-hor-padding blog_tertiary_container blog_archive_block" data-mh="blogTertiaryContainer">
-                    <a href="<?php echo get_permalink(get_the_ID()); ?>">
+                    <a href="<?php echo get_permalink(get_the_ID()); ?>" class="no_hover_underline">
                       <div class="blog_tertiary_image">
                         <?php
                         echo get_the_post_thumbnail(get_the_ID(), 'full', array('class' => 'blog_secondary_image', 'data-mh' => "blogTertiaryThumbnail")); //echo get_the_post_thumbnail($recentPost['ID'], 'full', array('class' => 'blog_secondary_image'));

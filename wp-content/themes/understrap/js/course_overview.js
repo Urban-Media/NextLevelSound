@@ -1,5 +1,5 @@
 jQuery(document).ready(function($) {
-  $('.collapse_expand').on('click', function() {
+  /*$('.collapse_expand').on('click', function() {
     var target = $(this).data('target');
     var type = $(this).data('type');
     var src = $("img", this).attr('src');
@@ -12,17 +12,11 @@ jQuery(document).ready(function($) {
     } else {
       $("img", this).fadeOut().attr("src", templateUrl + '/img/plus.png').fadeIn();
     }
+  });*/
 
-
-    /*if (target == "graduates") {
-      $('.graduates_content').collapse({
-        toggle: true
-      });
-    } else {
-      $('.masterclasses_content').collapse({
-        toggle: true
-      });
-    }
-    */
+  $('.view_study_options').on('click', function() {
+    $('html, body').animate({
+        scrollTop: $( '#studyOptions' ).offset().top
+    }, 500);
   });
 });

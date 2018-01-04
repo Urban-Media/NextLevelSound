@@ -67,8 +67,8 @@ class Topics_Widget extends Discourse_Widget {
     ?>
 
     <div class="section_sideblock nls_course_nav grey_block">
-      <div class="section_centre_circle">
-        <img src="<?php echo get_template_directory_uri(); ?>/img/speech.png" class="circle_icon">
+      <div class="section_centre_circle circle_icon">
+        <img src="<?php echo get_template_directory_uri(); ?>/img/speech.png">
       </div>
       <h2 class="sideblock_title text-center black_text forum_title">
         <?php
