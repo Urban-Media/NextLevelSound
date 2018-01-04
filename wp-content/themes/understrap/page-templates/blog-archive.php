@@ -35,17 +35,23 @@ get_header();
             $catTotal = count($categories);
             $i = 1;
             foreach($categories as $category) {
+              $thumbnailProperties = new stdClass();
               $thumbnailProperties = json_decode($category->term_thumbnail);
               //var_dump($thumbnailProperties);
               ?>
-              <div class="col-md-2 <?php if ($i != $catTotal) echo 'mr-md-auto'; ?> col-12 nls_course_nav no-hor-padding blog_archive_block">
-                <a href="<?php echo get_category_link($category->cat_ID); ?>">
-                  <img src="<?php echo $thumbnailProperties->sizes->thumbnail->url; ?>" alt="<?php echo $thumbnailProperties->alt; ?>" title="<?php echo $thumbnailProperties->title; ?>" style="border-top-left-radius: 10px;
-        border-top-right-radius: 10px; width:100% !important;" data-mh="category_thumbnails">
-                  <span class="list_category_name uppercase text-center">
-                    <?php echo $category->name; ?>
-                  </span>
-                </a>
+              <div class="col-md-3 col-12">
+                <div class="nls_course_nav no-hor-padding blog_archive_block">
+                  <a href="<?php echo get_category_link($category->cat_ID); ?>">
+                    <?php
+                    if (is_object($thumbnailProperties)) { ?>
+                    <img src="<?php echo $thumbnailProperties->sizes->thumbnail->url; ?>" alt="<?php echo $thumbnailProperties->alt; ?>" title="<?php echo $thumbnailProperties->title; ?>" style="border-top-left-radius: 10px;
+          border-top-right-radius: 10px; width:100% !important;" data-mh="category_thumbnails">
+                    <?php } ?>
+                    <span class="list_category_name uppercase text-center">
+                      <?php echo $category->name; ?>
+                    </span>
+                  </a>
+                </div>
               </div>
               <?php
               $i++;
@@ -136,36 +142,38 @@ get_header();
         $nextMostRecentPosts = new WP_Query($nextMostRecentPostArgs);
         ?>
 
-        <div class="container-fluid blog_secondary_posts">
-          <div class="row justify-content-between">
+        <div class="container-fluid blog_secondary_posts no-hor-padding">
+          <div class="row">
             <?php
             if ($nextMostRecentPosts->have_posts()) {
               while ($nextMostRecentPosts->have_posts()) {
                 $nextMostRecentPosts->the_post();
                 ?>
-                <div class="col-md-5 col-12 nls_course_nav no-hor-padding blog_archive_block">
-                  <a href="<?php echo get_permalink(get_the_ID()); ?>">
-                    <div class="blog_secondary_container">
-                      <div class="blog_secondary_image">
-                        <?php
-                        echo get_the_post_thumbnail(get_the_ID(), 'full', array('class' => 'blog_secondary_image')); //echo get_the_post_thumbnail($recentPost['ID'], 'full', array('class' => 'blog_secondary_image'));
-                        ?>
-                      </div>
-                      <div class="blog_secondary_content">
-                        <div class="blog_title text-center">
+                <div class="col-md-6 col-12">
+                  <div class="nls_course_nav blog_archive_block" data-mh="blogSecondaryContainer">
+                    <a href="<?php echo get_permalink(get_the_ID()); ?>">
+                      <div class="blog_secondary_container">
+                        <div class="blog_secondary_image">
                           <?php
-                          the_title(); //echo $recentPost['post_title'];
+                          echo get_the_post_thumbnail(get_the_ID(), 'full', array('class' => 'blog_secondary_image', 'data-mh' => 'blogSecondaryThumbnail')); //echo get_the_post_thumbnail($recentPost['ID'], 'full', array('class' => 'blog_secondary_image'));
                           ?>
                         </div>
+                        <div class="blog_secondary_content">
+                          <div class="blog_title text-center">
+                            <?php
+                            the_title(); //echo $recentPost['post_title'];
+                            ?>
+                          </div>
 
-                        <div class="blog_excerpt text-center">
-                          <?php
-                          //the_excerpt(); //echo $recentPost['post_excerpt'];
-                          ?>
+                          <div class="blog_excerpt text-center">
+                            <?php
+                            //the_excerpt(); //echo $recentPost['post_excerpt'];
+                            ?>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </a>
+                    </a>
+                  </div>
                 </div>
                 <?php
               }
@@ -239,29 +247,39 @@ get_header();
         $otherRecentPosts = new WP_Query($otherRecentPostsArgs); //$otherRecentPosts = wp_get_recent_posts( $otherRecentPostsArgs, ARRAY_A );
         ?>
 
-        <div class="container">
+        <div class="container  no-hor-padding">
           <div class="row">
             <?php
             //foreach($otherRecentPosts as $recentPost) {
+            $i = 0;
             if ($otherRecentPosts->have_posts()) {
               while ($otherRecentPosts->have_posts()) {
                 $otherRecentPosts->the_post();
+                $offset = "";
+                /*if ($i % 3 != 0) {
+                  $offset = "offset-md-1";
+                } else if ($i % 2 == 0) {
+                  //$offset = "offset-md-2";
+                }*/
+
+
                 ?>
-                <div class="col-md-3 col-12 nls_course_nav no-hor-padding blog_tertiary_container blog_archive_block">
-                  <div class="">
+                <div class="col-md-4 col-12">
+                  <div class="nls_course_nav no-hor-padding blog_tertiary_container blog_archive_block" data-mh="blogTertiaryContainer">
                     <a href="<?php echo get_permalink(get_the_ID()); ?>">
                       <div class="blog_tertiary_image">
                         <?php
-                        echo get_the_post_thumbnail(get_the_ID(), 'full', array('class' => 'blog_secondary_image')); //echo get_the_post_thumbnail($recentPost['ID'], 'full', array('class' => 'blog_secondary_image'));
+                        echo get_the_post_thumbnail(get_the_ID(), 'full', array('class' => 'blog_secondary_image', 'data-mh' => "blogTertiaryThumbnail")); //echo get_the_post_thumbnail($recentPost['ID'], 'full', array('class' => 'blog_secondary_image'));
                         ?>
                       </div>
-                      <div class="blog_title text-center blog_tertiary_content">
+                      <div class="blog_title_tertiary text-center blog_tertiary_content">
                         <?php the_title(); //echo $recentPost['post_title']; ?>
                       </div>
                     </a>
                   </div>
                 </div>
                 <?php
+                $i++;
               }
             }
             ?>
@@ -299,9 +317,8 @@ get_header();
       </div>
 
       <div class="get_more_posts">
-        GET NEW POSTS
         <?php
-        next_posts_link( 'More' , $otherRecentPosts->max_num_pages);
+        //next_posts_link( 'More' , $otherRecentPosts->max_num_pages);
         ?>
       </div>
 

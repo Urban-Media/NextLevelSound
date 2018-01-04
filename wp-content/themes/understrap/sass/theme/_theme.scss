@@ -87,6 +87,12 @@
    letter-spacing: 1px;
  }
 
+.container-custom {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
  .alert-success {
    background-color: $lighter-teal;
    border-color: $teal;
@@ -94,7 +100,52 @@
  }
 
  .site_header_block {
-   overflow: hidden;
+   /*overflow: hidden;*/
+ }
+
+ .signup_form {
+   padding-top: 50px;
+ }
+
+ .signup_input {
+   border: 1px solid $dark-grey;
+   border-radius: 5px;
+   padding: 5px;
+   margin-bottom: 24px;
+ }
+
+ .signup_input_left {
+   float: left;
+   width: 48%;
+   margin-right: 2%;
+ }
+
+ .signup_input_right {
+   float: right;
+   width: 48%;
+   margin-left: 2%;
+ }
+
+ .signup_image_right {
+   float: right;
+   padding-top: 5px;
+ }
+
+ .signup_submit {
+   background-color: $header-strap-bg;
+   margin-top: -5px !important;
+   padding-left: 40px;
+   padding-right: 40px;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   border-radius: 20px;
+   border: 0;
+   color: white;
+   cursor: pointer;
+
+   &:hover {
+     background-color: $dark-teal;
+   }
  }
 
  .menu_container {
@@ -226,6 +277,8 @@
   letter-spacing: 1.2px;
   font-family: "Raleway", sans-serif;
   font-size: 14px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .ways_to_pay_or {
@@ -234,7 +287,7 @@
   margin-right: auto;
   top: 50%;
   transform: translateY(-50%);
-  left: 30%;
+  left: 35%;
 }
 
 .one_payment {
@@ -705,7 +758,7 @@
 }
 
 .course_module_content {
-  padding-bottom: 30px;
+  /*padding-bottom: 30px;*/
 }
 
 .course_module_bottom {
@@ -758,27 +811,62 @@
 }
 
 .course_your_mentor_background {
-  background-repeat: no-repeat;
-  background-position: right;
+  /*background-repeat: no-repeat;
+  background-position: right;*/
   /*background-color: $mentor-image-bg;*/
-  background-size: auto;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  background-size: cover;
+  background-position: center right;
+  padding-top: 100px;
+  padding-bottom: 100px;
 
-  @include breakpoint(md) {
-    background-size: cover !important;
-  }
   @include breakpoint(sm) {
-    background-image: none !important;
+    background-image: url('../img/generic_bg_mobile.jpg') !important;
   }
   @include breakpoint(xs) {
-    background-image: none !important;
+    background-image: url('../img/generic_bg_mobile.jpg') !important;
   }
   @include breakpoint(xxs) {
-    background-image: none !important;
+    background-image: url('../img/generic_bg_mobile.jpg') !important;
   }
   @include breakpoint(xxxs) {
-    background-image: none !important;
+    background-image: url('../img/generic_bg_mobile.jpg') !important;
+  }
+}
+
+.course_your_mentor_mobile {
+  display: none;
+  padding-top: 20px;
+
+  @include breakpoint(sm) {
+    display: block;
+  }
+  @include breakpoint(xs) {
+    display: block;
+  }
+  @include breakpoint(xxs) {
+    display: block;
+  }
+  @include breakpoint(xxxs) {
+    display: block;
+  }
+}
+
+.course_your_mentor_desktop_image {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  @include breakpoint(sm) {
+    display: none;
+  }
+  @include breakpoint(xs) {
+    display: none;
+  }
+  @include breakpoint(xxs) {
+    display: none;
+  }
+  @include breakpoint(xxxs) {
+    display: none;
   }
 }
 
@@ -900,12 +988,12 @@
   }
 }
 
-.login_nav {
-  background-color: $header-strap-bg;
-  margin-top: -5px;
+.mega-login_nav {
+  background-color: $header-strap-bg !important;
+  margin-top: -5px !important;
 
   &:hover {
-    background-color: $dark-teal;
+    background-color: $dark-teal !important;
   }
 }
 
@@ -1152,6 +1240,62 @@
   }
 }
 
+.pagination {
+  display: none;
+}
+
+.sub-menu {
+  display: none;
+}
+
+#mega-menu-wrap-header-menu, #mega-menu-header-menu {
+  background: none !important;
+}
+
+#mega-menu-header-menu, .mega-menu-link {
+  font-family: "Raleway", sans-serif !important;
+  color: white !important;
+  font-size: 12px !important;
+  font-weight: bold !important;
+  text-transform: uppercase !important;
+  background: none !important;
+
+}
+
+.mega-sub-menu {
+  color: $grey-bio-text !important;
+  border-radius: 10px !important;
+  border-color: $dark-grey-strip;
+  line-height: 1px;
+  padding: 10px !important;
+}
+
+.mega-sub-menu-hr {
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+  /*&:last-child {
+    display: none;
+  }*/
+}
+
+.mega-sub-menu .mega-menu-link {
+  color: $grey-bio-text !important;
+
+  &:hover {
+    /*background-color: $greyer !important;*/
+    text-decoration: underline;
+  }
+}
+
+#mega-menu-wrap-header-menu #mega-menu-header-menu > li.mega-menu-flyout ul.mega-sub-menu li.mega-menu-item a.mega-menu-link {
+  line-height: 25px !important;
+}
+
+#mega-menu-wrap-header-menu #mega-menu-header-menu > li.mega-menu-flyout ul.mega-sub-menu {
+  border: 1px solid $dark-grey !important;
+}
+
 #social-links-menu {
   @include breakpoint(xs) {
     display: inline-flex;
@@ -1205,6 +1349,19 @@
   }
 }
 
+.nls_rounded_button_menu {
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  border-radius: 20px !important;
+  border: 0 !important;
+
+  &:hover {
+    background-color: $dark-teal !important;
+  }
+}
+
 .frontpage {
   background-color: $grey;
   background-repeat: no-repeat;
@@ -1246,8 +1403,16 @@
   color: $title;
 }
 
+.remind_me_details {
+  cursor: pointer;
+  font-family: "Alegraya",serif;
+  font-size: 16px;
+  color: #00939a!important;
+  line-height: 2;
+}
+
 .blog_posts {
-  padding-top: 65px;
+  padding-top: 45px;
 }
 
 .blog_subtitle {
@@ -1303,14 +1468,22 @@
 
 .blog_secondary_content {
   padding: 20px;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .blog_tertiary_content {
-  padding: 5px;
+  /*padding: 5px;*/
 }
 
 .blog_tertiary_container {
-  margin: 5px;
+  margin-bottom: 20px;
+
+  &:hover {
+    text-decoration: none !important;
+  }
 
   /*&:first-child {
     margin-left: 0px;
@@ -1326,6 +1499,22 @@
   font-weight: bold;
   font-size: 24px;
   color: $title;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.blog_title_tertiary {
+  font-size: 20px !important;
+  padding: 15px;
+  color: $title;
+  font-weight: bold;
+  font-family: "Raleway", sans-serif;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .blog_excerpt {

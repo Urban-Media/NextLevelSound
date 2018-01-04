@@ -174,11 +174,12 @@ if (have_rows('modules')) {
 
 <?php
 $mentorImage = get_field('mentor_image');
+$mentorImageMobile = get_field('mentor_image_mobile');
 ?>
-<div class="container-fluid">
+<div class="container-fluid no-hor-padding">
   <div class="row">
-    <div class="col-12 course_your_mentor_background" style="background-color: <?php the_field('mentor_background_colour'); ?>; background-image: url('<?php echo $mentorImage['url']; ?>');">
-      <div class="container">
+    <div class="col-12 course_your_mentor_background" style="background-image: url('<?php echo $mentorImage['url']; ?>');">
+      <div class="container no-hor-padding">
         <div class="row">
           <div class="col-12 col-md-12 col-lg-5 course_your_mentor_text_container"> <!--offset-lg-1-->
             <div class="section_title course_module_title course_your_mentor_title">
@@ -187,6 +188,9 @@ $mentorImage = get_field('mentor_image');
             <div class="sectgion_content course_your_mentor_text">
               <?php the_field('mentor_text'); ?>
             </div>
+						<div class="course_your_mentor_mobile">
+							<img src="<?php echo $mentorImageMobile['url']; ?>">
+						</div>
           </div>
         </div>
       </div>
@@ -198,7 +202,7 @@ $mentorImage = get_field('mentor_image');
 
 <!-- Block 6 Start -->
 
-<div class="container-fluid" id="testimonials">
+<div class="container-fluid no-hor-padding" id="testimonials">
 
 	<div class="row testimonials_bg">
 
@@ -265,7 +269,7 @@ $mentorImage = get_field('mentor_image');
 
 <!-- Block 7 Start -->
 
-<div class="container-fluid" id="studyOptions">
+<div class="container-fluid no-hor-padding" id="studyOptions">
 	<div class="row grey_block">
 		<div class="col-12">
       <div class="container frontpage_block study_options_block">
@@ -289,7 +293,7 @@ $mentorImage = get_field('mentor_image');
   </div>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid no-hor-padding">
   <div class="row frontpage" style="padding-bottom: 0px; background-size: contain; background-image: url('<?php echo get_template_directory_uri(); ?>/img/study_options_bg.png');">
 
 		<div class="container">
@@ -368,7 +372,17 @@ $mentorImage = get_field('mentor_image');
 
 									<div class="row">
 										<?php $atts = array(); ?>
-										<?php echo do_shortcode('[lifterlms_checkout cols="2"]'); ?>
+										<?php //echo do_shortcode('[lifterlms_checkout cols="2"]'); ?>
+										<div class="col-12">
+											<form method="" action="post" class="signup_form">
+												<input class="signup_input signup_input_left" type="text" label="first_name" placeholder="First Name">
+												<input class="signup_input signup_input_right" type="text" label="last_name" placeholder="Last Name">
+												<input class="signup_input signup_input_left" type="email" label="email" placeholder="Email Address">
+												<input class="signup_input signup_input_right" type="tel" label="telephone" placeholder="Phone Number">
+												<input type="submit" value="Enroll Now" class="signup_input_right signup_submit">
+												<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/credit_card_icons.png" class="signup_image_right">
+											</form>
+										</div>
 									</div>
 
 								</div>
@@ -406,11 +420,12 @@ $mentorImage = get_field('mentor_image');
 		</div>
 	</div>
 </div>
+</div>
 <!-- Block 7 End -->
 
 <!-- Block 8 Start -->
 
-<div class="container-fluid frontpage_image_faded_bg" style="background-position: bottom; background-image: url('<?php echo get_template_directory_uri(); ?>/img/questions_bg.jpg');">
+<div class="container-fluid frontpage_image_faded_bg no-hor-padding" style="background-position: bottom; background-image: url('<?php echo get_template_directory_uri(); ?>/img/questions_bg.jpg');">
 
 	<div class="row">
 
@@ -426,6 +441,11 @@ $mentorImage = get_field('mentor_image');
             <div class="sign_up_content">
               <?php the_field('sign_up_content'); ?>
             </div>
+
+						<div class="remind_me_details" data-target="#reminder" data-toggle="collapse" aria-expanded="false" aria-controls="reminder">
+							Remind me of the details...
+						</div>
+
           </div>
           <div class="col-md-5 col-12">
             <a href="#" class="sideblock_link">
@@ -434,7 +454,46 @@ $mentorImage = get_field('mentor_image');
               </div>
             </a>
           </div>
+
+					<div class="container-fluid course_module collapse" id="reminder">
+			      <div class="row text-center course_module_title_container">
+			        <div class="col-md-6 offset-md-3 col-12">
+			          <div class="section_title course_module_title">
+			            <?php the_field('remind_title'); ?>
+			          </div>
+			          <div class="section_content grey_section_content course_module_content">
+			            <?php the_field('remind_brief'); ?>
+			          </div>
+			        </div>
+			      </div>
+			      <div class="row text-center">
+			        <div class="col-12">
+			          <div class="section_subtitle uppercase course_success_subtitle">
+			            At the end of <?php the_field('remind_title'); ?> you'll be able to:
+			          </div>
+			        </div>
+			      </div>
+			      <div class="row">
+			        <div class="col-md-10 offset-md-1 col-12">
+			          <ul class="course_module_goals success_reasons d-flex flex-row flex-wrap">
+			            <?php
+			            if (have_rows('remind_goals')) {
+			              while (have_rows('remind_goals')) { the_row();
+			                ?>
+			                <li class="course_module_goal success_reason  w-50">
+			                  <?php the_sub_field('remind_goal'); ?>
+			                </li>
+			                <?php
+			              }
+			            }
+			            ?>
+			          </ul>
+			        </div>
+			      </div>
+			    </div>
+
         </div>
+
       </div>
     </div>
   </div>

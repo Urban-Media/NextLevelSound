@@ -174,6 +174,8 @@ if (strlen($heroBackgroundImage['url']) < 1) {
 									 } else if (is_page_template('page-templates/course-overview.php')) {
 										 // There should be an ACF field on course overview pages
 										 the_field('overview_title');
+									 } else if (is_archive()) {
+										 the_archive_title();
 									 } else {
 										 echo (strlen($customTitle) > 0) ? $customTitle : the_title();
 									 }

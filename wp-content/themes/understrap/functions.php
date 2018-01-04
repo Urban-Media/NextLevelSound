@@ -90,9 +90,11 @@ require get_template_directory() . '/inc/editor.php';
   */
 function load_custom_scripts() {
     wp_register_script('matchHeight', get_template_directory_uri() . '/js/jquery.matchHeight-min.js', array('jquery'), false);
+    wp_register_script('global', get_template_directory_uri() . '/js/global.js', array('jquery'), false);
     //wp_register_script('courseOverview', get_template_directory_uri() . '/js/course_overview.js', array('jquery'), false);
 
     wp_enqueue_script('matchHeight', get_template_directory_uri() . '/js/jquery.matchHeight-min.js', array('jquery'), false);
+    wp_enqueue_script('global', get_template_directory_uri() . '/js/global.js', array('jquery'), false);
 
     // Only load courseOverview.js on course overview template pages
     /*if(is_page_template('page-templates/course-overview.php')) {
@@ -120,15 +122,18 @@ add_image_size('category_thumbnail', 180, 125);
 add_image_size('primary_blog_post_thumbnail', 530, 350);
 add_image_size('secondary_blog_post_thumbnail', 375, 185);
 add_image_size('tertiary_blog_post_thumbnail', 250, 185);
+add_image_size('your_mentor_desktop', 600, 600);
+add_image_size('blog_secondary_image', 300, 300);
 
 /*
 * Header menu nav walker
 */
 register_nav_menus( array(
-   'header-menu'       => 'Header Menu',
-   'links-menu'       => 'Links Menu',
+   'header-menu'        => 'Header Menu',
+   'links-menu'         => 'Links Menu',
    'courses-menu'       => 'Courses Menu',
-   'social-links-menu'       => 'Social Links Menu',
+   'social-links-menu'  => 'Social Links Menu',
+   'courses-dropdown'   => 'Courses Dropdown Menu'
 ) );
 
 class Social_Links_Navwalker extends Walker_Nav_Menu {
@@ -167,6 +172,10 @@ class Header_Menu_Navwalker extends Walker_Nav_Menu {
       if(array_search('current-menu-item', $item->classes) != 0)
       {
           $isCurrentItem = 'nls_active_menu_item';
+      }
+
+      if ($item->title == "Courses" && $depth == 0) {
+        $loginExtraClass .= "sub_menu";
       }
 
      $output .= '<li class="nav-item"><a class="nav-link '.$loginExtraClass.' '.$isCurrentItem.'" href="' . $url . '">' . $item->title;
