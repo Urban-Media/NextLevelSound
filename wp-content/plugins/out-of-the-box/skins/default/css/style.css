@@ -140,7 +140,6 @@
 
 /* Layout Player */
 #OutoftheBox .jp-jplayer {
-  background: url(../../../css/clouds/cloud_system_128.png) center no-repeat;
   border: 1px solid #E4E4E4;
   border-radius: 18px 18px 0 0;
   position: relative;
@@ -149,6 +148,7 @@
   -moz-transition: all 0.2s linear;
   -o-transition: all 0.2s linear;
   overflow: hidden;
+  opacity: 0;
 }
 
 #OutoftheBox .jp-video .jp-jplayer img{

@@ -234,4 +234,13 @@ class Helpers {
         return array_search($search, $columns);
     }
 
+    static public function compress_css($minify) {
+
+        $minify = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $minify);
+        $minify = str_replace(': ', ':', $minify);
+        $minify = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $minify);
+
+        return $minify;
+    }
+
 }

@@ -44,6 +44,7 @@ function wp_roles_checkbox($name, $selected = array()) {
 
 $this->load_scripts();
 $this->load_styles();
+$this->load_custom_css();
 
 function OutoftheBox_remove_all_scripts() {
     global $wp_scripts;
@@ -92,12 +93,13 @@ $mode = (isset($_REQUEST['mode'])) ? $_REQUEST['mode'] : 'files';
       } else if ($type === 'gravityforms') {
           $title = __('Shortcode Builder', 'outofthebox');
           $mcepopup = 'shortcode';
+      } else if ($type === 'woocommerce') {
+          $title = __('Shortcode Builder', 'outofthebox');
+          $mcepopup = 'shortcode';
       }
       ?></title>
     <?php if ($type !== 'gravityforms') { ?>
         <script type="text/javascript" src="<?php echo site_url(); ?>/wp-includes/js/tinymce/tiny_mce_popup.js"></script>
-        <script type="text/javascript" src="<?php echo site_url(); ?>/wp-includes/js/tinymce/utils/mctabs.js"></script>
-        <script type="text/javascript" src="<?php echo site_url(); ?>/wp-includes/js/tinymce/utils/form_utils.js"></script>
     <?php } ?>
 
     <?php wp_print_scripts(); ?>
@@ -122,6 +124,8 @@ $mode = (isset($_REQUEST['mode'])) ? $_REQUEST['mode'] : 'files';
                 <div id="doinsert" class="simple-button default insert_embedded" name="insert" ><?php _e("Embed Files", 'outofthebox'); ?>&nbsp;<i class="fa fa-chevron-circle-right" aria-hidden="true"></i></div>
             <?php } elseif ($type === 'gravityforms') { ?>
                 <div id="doinsert" class="simple-button default insert_shortcode_gf" name="insert"><?php _e("Insert Shortcode", 'outofthebox'); ?>&nbsp;<i class="fa fa-chevron-circle-right" aria-hidden="true"></i></div>
+            <?php } elseif ($type === 'woocommerce') { ?>
+                <div id="doinsert" class="simple-button default insert_shortcode_woocommerce" name="insert"><?php _e("Insert Shortcode", 'outofthebox'); ?>&nbsp;<i class="fa fa-chevron-circle-right" aria-hidden="true"></i></div>
             <?php } ?>
           </div>
 
@@ -224,6 +228,10 @@ $mode = (isset($_REQUEST['mode'])) ? $_REQUEST['mode'] : 'files';
                     <div class="outofthebox-option-radio">
                       <input type="radio" id="video" name="mode" <?php echo (($mode === 'video') ? 'checked="checked"' : ''); ?> value="video" class="mode"/>
                       <label for="video" class="outofthebox-option-radio-label"><?php _e('Video player', 'outofthebox'); ?></label>
+                    </div>
+                    <div class="outofthebox-option-radio">
+                      <input type="radio" id="search" name="mode" <?php echo (($mode === 'search') ? 'checked="checked"' : ''); ?> value="search" class="mode"/>
+                      <label for="search" class="outofthebox-option-radio-label"><?php _e('Search Box', 'outofthebox'); ?></label>
                     </div>
                 <?php } ?>
 
@@ -470,7 +478,7 @@ $mode = (isset($_REQUEST['mode'])) ? $_REQUEST['mode'] : 'files';
                 <input type="text" name="OutoftheBox_max_width" id="OutoftheBox_max_width" placeholder="100%" value="<?php echo (isset($_REQUEST['maxwidth'])) ? $_REQUEST['maxwidth'] : ''; ?>"/>
 
 
-                <div class="forfilebrowser forgallery">
+                <div class="forfilebrowser forgallery forsearch">
                   <div class="outofthebox-option-title"><?php _e('Plugin container height', 'outofthebox'); ?></div>
                   <div class="outofthebox-option-description"><?php _e("Set max height for the Out-of-the-Box container", "outofthebox"); ?>. <?php _e("You can use pixels or percentages, eg '360px', '480px', '70%'", "outofthebox"); ?>. <?php _e('Leave empty for default value', 'outofthebox'); ?>.</div>
                   <input type="text" name="OutoftheBox_max_height" id="OutoftheBox_max_height" placeholder="auto" value="<?php echo (isset($_REQUEST['maxheight'])) ? $_REQUEST['maxheight'] : ''; ?>"/>
@@ -496,8 +504,10 @@ $mode = (isset($_REQUEST['mode'])) ? $_REQUEST['mode'] : 'files';
                     <div class="outofthebox-option-title"><?php _e('Breadcrumb text for top folder', 'outofthebox'); ?></div>
                     <input type="text" name="OutoftheBox_roottext" id="OutoftheBox_roottext" placeholder="<?php _e('Start', 'outofthebox'); ?>" value="<?php echo (isset($_REQUEST['roottext'])) ? $_REQUEST['roottext'] : ''; ?>"/>
                   </div>
+                </div>
 
-                  <div class="option forfilebrowser forlistonly">
+                <div class=" forfilebrowser forgallery forsearch">
+                  <div class="option forfilebrowser forsearch forlistonly">
                     <div class="outofthebox-option-title"><?php _e('Show columnnames', 'outofthebox'); ?>
                       <div class="outofthebox-onoffswitch">
                         <input type="checkbox" name="OutoftheBox_showcolumnnames" id="OutoftheBox_showcolumnnames" class="outofthebox-onoffswitch-checkbox" <?php echo (isset($_REQUEST['showcolumnnames']) && $_REQUEST['showcolumnnames'] === '0') ? '' : 'checked="checked"'; ?> data-div-toggle="columnnames-options"/>
@@ -521,16 +531,15 @@ $mode = (isset($_REQUEST['mode'])) ? $_REQUEST['mode'] : 'files';
                         <div class="outofthebox-option-title"><?php _e('Show last modified date', 'outofthebox'); ?>
                           <div class="outofthebox-onoffswitch">
                             <input type="checkbox" name="OutoftheBox_filedate" id="OutoftheBox_filedate" class="outofthebox-onoffswitch-checkbox" <?php echo (isset($_REQUEST['filedate']) && $_REQUEST['filedate'] === '0') ? '' : 'checked="checked"'; ?>/>
-                            <label class="outofthebox-onoffswitch-label" for="OutoftheBox_showfiles"></label>
+                            <label class="outofthebox-onoffswitch-label" for="OutoftheBox_filedate"></label>
                           </div>
                         </div>
                         <div class="outofthebox-option-description"><?php _e('Display or Hide column with last modified date in List view', 'outofthebox'); ?></div>
                       </div>
                     </div>
-
                   </div>
 
-                  <div class="option forfilebrowser">
+                  <div class="option forfilebrowser forsearch">
                     <div class="outofthebox-option-title"><?php _e('Show file extension', 'outofthebox'); ?>
                       <div class="outofthebox-onoffswitch">
                         <input type="checkbox" name="OutoftheBox_showext" id="OutoftheBox_showext" class="outofthebox-onoffswitch-checkbox" <?php echo (isset($_REQUEST['showext']) && $_REQUEST['showext'] === '0') ? '' : 'checked="checked"'; ?>/>
@@ -565,9 +574,17 @@ $mode = (isset($_REQUEST['mode'])) ? $_REQUEST['mode'] : 'files';
                 </div>
 
                 <div class="option forgallery">
+                  <div class="outofthebox-option-title"><?php _e('Show file names', 'outofthebox'); ?>
+                    <div class="outofthebox-onoffswitch">
+                      <input type="checkbox" name="OutoftheBox_showfilenames" id="OutoftheBox_showfilenames" class="outofthebox-onoffswitch-checkbox" <?php echo (isset($_REQUEST['showfilenames"']) && $_REQUEST['showfilenames"'] === '1') ? 'checked="checked"' : ''; ?>/>
+                      <label class="outofthebox-onoffswitch-label" for="OutoftheBox_showfilenames"></label>
+                    </div>
+                  </div>
+                  <div class="outofthebox-option-description"><?php _e('Display or Hide the file names in the gallery', 'outofthebox'); ?></div>
+
                   <div class="outofthebox-option-title"><?php _e('Gallery row height', 'outofthebox'); ?></div>
-                  <div class="outofthebox-option-description"><?php _e("The ideal height you want your grid rows to be", 'outofthebox'); ?>. <?php _e("It won't set it exactly to this as plugin adjusts the row height to get the correct width", 'outofthebox'); ?>. <?php _e('Leave empty for default value', 'outofthebox'); ?> (150px).</div>
-                  <input type="text" name="OutoftheBox_targetHeight" id="OutoftheBox_targetHeight" placeholder="150" value="<?php echo (isset($_REQUEST['targetheight'])) ? $_REQUEST['targetheight'] : ''; ?>"/>
+                  <div class="outofthebox-option-description"><?php _e("The ideal height you want your grid rows to be", 'outofthebox'); ?>. <?php _e("It won't set it exactly to this as plugin adjusts the row height to get the correct width", 'outofthebox'); ?>. <?php _e('Leave empty for default value', 'outofthebox'); ?> (200px).</div>
+                  <input type="text" name="OutoftheBox_targetHeight" id="OutoftheBox_targetHeight" placeholder="200" value="<?php echo (isset($_REQUEST['targetheight'])) ? $_REQUEST['targetheight'] : ''; ?>"/>
 
                   <div class="outofthebox-option-title"><?php _e('Number of images lazy loaded', 'outofthebox'); ?></div>
                   <div class="outofthebox-option-description"><?php _e("Number of images to be loaded each time", 'outofthebox'); ?>. <?php _e("Set to 0 to load all images at once", 'outofthebox'); ?>.</div>
@@ -575,7 +592,7 @@ $mode = (isset($_REQUEST['mode'])) ? $_REQUEST['mode'] : 'files';
 
                   <div class="outofthebox-option-title"><?php _e('Show Folder Thumbnails in Gallery', 'outofthebox'); ?>
                     <div class="outofthebox-onoffswitch">
-                      <input type="checkbox" name="OutoftheBox_folderthumbs" id="OutoftheBox_folderthumbs" class="outofthebox-onoffswitch-checkbox" <?php echo (isset($_REQUEST['folderthumbs']) && $_REQUEST['folderthumbs'] === '1') ? 'checked="checked"' : ''; ?> />
+                      <input type="checkbox" name="OutoftheBox_folderthumbs" id="OutoftheBox_folderthumbs" class="outofthebox-onoffswitch-checkbox" <?php echo (isset($_REQUEST['folderthumbs']) && $_REQUEST['folderthumbs'] === '0') ? '' : 'checked="checked"'; ?> />
                       <label class="outofthebox-onoffswitch-label" for="OutoftheBox_folderthumbs"></label>
                     </div>
                   </div>
@@ -671,14 +688,16 @@ $mode = (isset($_REQUEST['mode'])) ? $_REQUEST['mode'] : 'files';
                 </div>
                 <div class="outofthebox-option-description"><?php _e('The search function allows your users to find files by filename and content (when files are indexed)', 'outofthebox'); ?></div>
 
-                <div class="option search-options <?php echo (isset($_REQUEST['search']) && $_REQUEST['search'] === '1') ? '' : 'hidden'; ?>">
-                  <div class="outofthebox-option-title"><?php _e('Perform Full-Text search', 'outofthebox'); ?>
-                    <div class="outofthebox-onoffswitch">
-                      <input type="checkbox" name="OutoftheBox_search_field" id="OutoftheBox_search_field"  class="outofthebox-onoffswitch-checkbox" <?php echo (isset($_REQUEST['searchcontents']) && $_REQUEST['searchcontents'] === '1') ? 'checked="checked"' : ''; ?>/>
-                      <label class="outofthebox-onoffswitch-label" for="OutoftheBox_search_field"></label>
+                <div class="option forfilebrowser forgallery">
+                  <div class="option search-options <?php echo (isset($_REQUEST['search']) && $_REQUEST['search'] === '1') ? '' : 'hidden'; ?>">
+                    <div class="outofthebox-option-title"><?php _e('Perform Full-Text search', 'outofthebox'); ?>
+                      <div class="outofthebox-onoffswitch">
+                        <input type="checkbox" name="OutoftheBox_search_field" id="OutoftheBox_search_field"  class="outofthebox-onoffswitch-checkbox" <?php echo (isset($_REQUEST['searchcontents']) && $_REQUEST['searchcontents'] === '1') ? 'checked="checked"' : ''; ?>/>
+                        <label class="outofthebox-onoffswitch-label" for="OutoftheBox_search_field"></label>
+                      </div>
                     </div>
+                    <div class="outofthebox-option-description"><?php _e('Business Accounts only', 'outofthebox'); ?>. </div>
                   </div>
-                  <div class="outofthebox-option-description"><?php _e('Business Accounts only', 'outofthebox'); ?>. </div>
                 </div>
 
                 <div class="outofthebox-option-title"><?php _e('Allow Sharing', 'outofthebox'); ?>
@@ -826,7 +845,9 @@ $mode = (isset($_REQUEST['mode'])) ? $_REQUEST['mode'] : 'files';
                       <label class="outofthebox-onoffswitch-label" for="OutoftheBox_delete"></label>
                     </div>
                   </div>
+                </div>
 
+                <div class="option forfilebrowser forgallery">
                   <div class="outofthebox-option-title"><?php _e('Create new folders', 'outofthebox'); ?>
                     <div class="outofthebox-onoffswitch">
                       <input type="checkbox" name="OutoftheBox_addfolder" id="OutoftheBox_addfolder" class="outofthebox-onoffswitch-checkbox" <?php echo (isset($_REQUEST['addfolder']) && $_REQUEST['addfolder'] === '1') ? 'checked="checked"' : ''; ?> data-div-toggle="addfolder-options"/>
@@ -847,7 +868,7 @@ $mode = (isset($_REQUEST['mode'])) ? $_REQUEST['mode'] : 'files';
               <div id="settings_permissions"  class="outofthebox-tab-panel">
                 <div class="outofthebox-tab-panel-header"><?php _e('User Permissions', 'outofthebox'); ?></div>
 
-                <div class="option forfilebrowser forupload forgallery foraudio forvideo outofthebox-permissions-box">
+                <div class="option forfilebrowser forupload forgallery foraudio forvideo forsearch outofthebox-permissions-box">
                   <div class="outofthebox-option-title"><?php _e('Who can see the plugin', 'outofthebox'); ?></div>
                   <?php
                   $selected = (isset($_REQUEST['viewrole'])) ? explode('|', $_REQUEST['viewrole']) : array('administrator', 'author', 'contributor', 'editor', 'subscriber', 'pending', 'guest');
@@ -873,7 +894,7 @@ $mode = (isset($_REQUEST['mode'])) ? $_REQUEST['mode'] : 'files';
 
                 </div>
 
-                <div class="option outofthebox-permissions-box forfilebrowser forgallery  forupload upload-options">
+                <div class="option outofthebox-permissions-box forfilebrowser forgallery forupload upload-options">
                   <div class="outofthebox-option-title"><?php _e('Who can upload', 'outofthebox'); ?></div>
                   <?php
                   $selected = (isset($_REQUEST['uploadrole'])) ? explode('|', $_REQUEST['uploadrole']) : array('administrator', 'author', 'contributor', 'editor', 'subscriber');
@@ -881,7 +902,7 @@ $mode = (isset($_REQUEST['mode'])) ? $_REQUEST['mode'] : 'files';
                   ?>
                 </div>
 
-                <div class="option outofthebox-permissions-box forfilebrowser forgallery rename-options ">
+                <div class="option outofthebox-permissions-box forfilebrowser forgallery forsearch rename-options ">
                   <div class="outofthebox-option-title"><?php _e('Who can rename files', 'outofthebox'); ?></div>
                   <?php
                   $selected = (isset($_REQUEST['renamefilesrole'])) ? explode('|', $_REQUEST['renamefilesrole']) : array('administrator', 'author', 'contributor', 'editor');
@@ -889,7 +910,7 @@ $mode = (isset($_REQUEST['mode'])) ? $_REQUEST['mode'] : 'files';
                   ?>
                 </div>
 
-                <div class="option outofthebox-permissions-box forfilebrowser forgallery rename-options ">
+                <div class="option outofthebox-permissions-box forfilebrowser forgallery forsearch rename-options ">
                   <div class="outofthebox-option-title"><?php _e('Who can rename folders', 'outofthebox'); ?></div>
                   <?php
                   $selected = (isset($_REQUEST['renamefoldersrole'])) ? explode('|', $_REQUEST['renamefoldersrole']) : array('administrator', 'author', 'contributor', 'editor');
@@ -897,7 +918,7 @@ $mode = (isset($_REQUEST['mode'])) ? $_REQUEST['mode'] : 'files';
                   ?>
                 </div>
 
-                <div class="option outofthebox-permissions-box forfilebrowser forgallery move-options">
+                <div class="option outofthebox-permissions-box forfilebrowser forgallery forsearch move-options">
                   <div class="outofthebox-option-title"><?php _e('Who can move files and folders', 'outofthebox'); ?></div>
                   <?php
                   $selected = (isset($_REQUEST['moverole'])) ? explode('|', $_REQUEST['moverole']) : array('administrator', 'editor');
@@ -905,7 +926,7 @@ $mode = (isset($_REQUEST['mode'])) ? $_REQUEST['mode'] : 'files';
                   ?>
                 </div>
 
-                <div class="option outofthebox-permissions-box forfilebrowser forgallery delete-options ">
+                <div class="option outofthebox-permissions-box forfilebrowser forgallery forsearch delete-options ">
                   <div class="outofthebox-option-title"><?php _e('Who can delete files', 'outofthebox'); ?></div>
                   <?php
                   $selected = (isset($_REQUEST['deletefilesrole'])) ? explode('|', $_REQUEST['deletefilesrole']) : array('administrator', 'author', 'contributor', 'editor');
@@ -913,7 +934,7 @@ $mode = (isset($_REQUEST['mode'])) ? $_REQUEST['mode'] : 'files';
                   ?>
                 </div>
 
-                <div class="option outofthebox-permissions-box forfilebrowser forgallery delete-options ">
+                <div class="option outofthebox-permissions-box forfilebrowser forgallery forsearch delete-options ">
                   <div class="outofthebox-option-title"><?php _e('Who can delete folders', 'outofthebox'); ?></div>
                   <?php
                   $selected = (isset($_REQUEST['deletefoldersrole'])) ? explode('|', $_REQUEST['deletefoldersrole']) : array('administrator', 'author', 'contributor', 'editor');
@@ -941,17 +962,5 @@ $mode = (isset($_REQUEST['mode'])) ? $_REQUEST['mode'] : 'files';
         </div>
       </div>
     </form>
-
-    <?php if ($type === 'gravityforms') { ?>
-        <script type="text/javascript">
-            jQuery(document).ready(function ($) {
-              $("#tabs").disableTab(2, true);
-              $("#tabs").disableTab(4, true);
-              $("#tabs").disableTab(5, true);
-              $("#tabs").disableTab(6, true);
-              $("#tabs").disableTab(8, true);
-            });
-        </script>
-    <?php } ?>
   </body>
 </html>

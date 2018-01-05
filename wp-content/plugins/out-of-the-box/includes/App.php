@@ -92,14 +92,29 @@ class App {
     }
 
     public function process_authorization() {
-//        TO DO CHECK IF THIS PLUGIN IS DOING THE AUTHORIZATION
-//        if (!isset($_REQUEST['action'])) {
-//            return false;
-//        }
-//
-//        if ($_REQUEST['action'] !== 'outofthebox_authorization') {
-//            return false;
-//        }
+
+        if (isset($_REQUEST['action']) && $_REQUEST['action'] !== 'outofthebox_authorization') {
+            return false;
+        } elseif (!empty($_REQUEST['state'])) {
+            $state = (strtr($_REQUEST['state'], '-_~', '+/='));
+
+            $csrfToken = $state;
+            $urlState = null;
+
+            $splitPos = strpos($state, "|");
+
+            if ($splitPos !== false) {
+                $csrfToken = substr($state, 0, $splitPos);
+                $urlState = substr($state, $splitPos + 1);
+            }
+            $redirectto = base64_decode($urlState);
+
+            if (strpos($redirectto, 'outofthebox_authorization') === false) {
+                return false;
+            }
+        } else {
+            return false;
+        }
 
 
         if (isset($_GET['code'])) {

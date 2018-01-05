@@ -139,13 +139,13 @@
 }
 /* Layout Player */
 #OutoftheBox .jp-jplayer {
-  background: url(../../../css/clouds/cloud_system_128.png) center no-repeat;
   position: relative;
   transition: all 0.2s linear;
   -webkit-transition: all 0.2s linear;
   -moz-transition: all 0.2s linear;
   -o-transition: all 0.2s linear;
   margin: 0 auto;
+  opacity: 0;
 }
 
 
@@ -169,7 +169,7 @@
   display: block;
   position: relative;
   height: 50px;
-  background: #0b0b0b;
+  background: #0b0b0b!important;
   color: #969696;
   padding: 5px 10px;
   z-index: 996;

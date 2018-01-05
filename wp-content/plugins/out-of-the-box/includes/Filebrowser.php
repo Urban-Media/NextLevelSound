@@ -95,7 +95,9 @@ class Filebrowser {
             }
         }
 
-        $filelist_html .= $this->renderNewFolder();
+        if ($this->_search === false) {
+            $filelist_html .= $this->renderNewFolder();
+        }
 
         if ($this->_folder->has_children()) {
             foreach ($this->_folder->get_children() as $item) {
@@ -179,7 +181,7 @@ class Filebrowser {
 
         $html = '<div class="entry folder">
 <div class="entry_icon">
-<img src="' . OUTOFTHEBOX_ROOTPATH . '/css/clouds/cloud_status_16.png" ></div>
+<img src="' . OUTOFTHEBOX_ROOTPATH . '/css/images/loader_no_results.png" ></div>
 <div class="entry_name"><a class="entry_link">' . __('No files or folders found', 'outofthebox') . '</a></div></div>
 ';
 
@@ -192,7 +194,7 @@ class Filebrowser {
         $classmoveable = ($this->get_processor()->get_user()->can_move()) ? 'moveable' : '';
         $style = ($item->is_parent_folder()) ? ' previous ' : '';
 
-        $return .= "<div class='entry folder $classmoveable $style' data-url='" . rawurlencode($item->get_path_display()) . "' data-name=\"" . $item->get_basename() . "\">\n";
+        $return .= "<div class='entry folder $classmoveable $style' data-url='" . rawurlencode($item->get_path_display()) . "' data-name=\"" . htmlentities($item->get_basename(), ENT_QUOTES | ENT_HTML401). "\">\n";
         $return .= "<div class='entry_icon' data-url='" . rawurlencode($item->get_path_display()) . "'><img src='" . $item->get_icon() . "'/></div>\n";
 
         if ($item->is_parent_folder() === false) {
@@ -334,7 +336,8 @@ class Filebrowser {
                         $icon_256 = str_replace('32x32', '256x256', $item->get_icon());
                         $lightbox .= ' data-options="mousewheel: false, width: \'85%\', height: \'85%\', thumbnail: \'' . $icon . '\'"';
                         $thumbnail = ($html5_element === 'audio') ? '<div class="html5_player_thumbnail"><img src="' . $icon_256 . '"/><h3>' . $item->get_basename() . '</h3></div>' : '';
-                        $lightbox_inline = '<div id="' . $id . '" class="html5_player" style="display:none;"><div class="html5_player_container"><div style="width:100%"><' . $html5_element . ' controls controlsList="nodownload" preload="metadata"  poster="' . $icon_256 . '"> <source data-src="' . $url . '" type="' . $item->get_mimetype() . '">' . __('Your browser does not support HTML5. You can only download this file', 'outofthebox') . '</' . $html5_element . '></div>' . $thumbnail . '</div></div>';
+                        $download = ($this->get_processor()->get_user()->can_download()) ? '' : 'controlsList="nodownload"';
+                        $lightbox_inline = '<div id="' . $id . '" class="html5_player" style="display:none;"><div class="html5_player_container"><div style="width:100%"><' . $html5_element . ' controls ' . $download . ' preload="metadata"  poster="' . $icon_256 . '"> <source data-src="' . $url . '" type="' . $item->get_mimetype() . '">' . __('Your browser does not support HTML5. You can only download this file', 'outofthebox') . '</' . $html5_element . '></div>' . $thumbnail . '</div></div>';
                         $url = '#' . $id;
                         break;
                     case 'iframe':

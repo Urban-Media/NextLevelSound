@@ -164,13 +164,13 @@
 }
 /* Layout Player */
 #OutoftheBox .jp-jplayer {
-  background: url(../../../css/clouds/cloud_system_128.png) center no-repeat;
   position: relative;
   transition: all 0.2s linear;
   -webkit-transition: all 0.2s linear;
   -moz-transition: all 0.2s linear;
   -o-transition: all 0.2s linear;
   margin: 0 auto;
+  opacity: 0;
 }
 
 
@@ -198,6 +198,7 @@
   left: 0;
   right: 0;
   overflow: hidden;
+  background-color: initial!important;
 }
 
 #OutoftheBox .gui-container{
@@ -440,7 +441,7 @@
   margin-left:5px;
 }
 #OutoftheBox span.jp-playlist-item-url{
- display: table-cell;
+  display: table-cell;
   vertical-align: middle;
   width: 75px;
 }

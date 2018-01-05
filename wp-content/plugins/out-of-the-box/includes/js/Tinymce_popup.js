@@ -13,7 +13,13 @@ jQuery(document).ready(function ($) {
 
     $(this).addClass('current');
     $("#" + tab_id).addClass('current');
-  })
+    var hash = location.hash.replace('#', '');
+    location.hash = tab_id;
+    window.scrollTo(0, 0);
+  });
+  if (location.hash) {
+    jQuery("ul.outofthebox-nav-tabs " + location.hash + "_tab").trigger('click');
+  }
 
   /* Fix for not scrolling popup*/
   if (/Android|webOS|iPhone|iPod|iPad|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -36,7 +42,7 @@ jQuery(document).ready(function ($) {
 
   $("input[name=mode]:radio").change(function () {
 
-    $('.forfilebrowser, .forgallery, .foraudio, .forvideo').hide();
+    $('.forfilebrowser, .forgallery, .foraudio, .forvideo, .forsearch').hide();
     $("#OutoftheBox_linkedfolders").trigger('change');
 
     $('#settings_upload_tab, #settings_advanced_tab, #settings_manipulation_tab, #settings_notifications_tab, #settings_mediafiles_tab, #settings_layout_tab, #settings_sorting_tab, #settings_exclusions_tab').removeClass('disabled');
@@ -61,8 +67,14 @@ jQuery(document).ready(function ($) {
       case 'gallery':
         $('.forgallery').show();
         $('#settings_mediafiles_tab').addClass('disabled');
-        ;
         $('#OutoftheBox_upload_ext, #OutoftheBox_include_ext').val('gif|jpg|jpeg|png|bmp');
+        break;
+
+      case 'search':
+        $('.forsearch').not('.hidden').show();
+        $('#settings_mediafiles_tab').addClass('disabled');
+        $('#settings_upload_tab').addClass('disabled');
+        $('#OutoftheBox_search_field').prop("checked", true).trigger('change');
         break;
 
       case 'audio':
@@ -158,6 +170,10 @@ jQuery(document).ready(function ($) {
     insertOutoftheBoxShortCodeGF(event)
   });
 
+  $('.outofthebox  .insert_shortcode_woocommerce').click(function (event) {
+    insertOutoftheBoxShortCodeWC(event)
+  });
+
   $(".OutoftheBox img.preloading").unveil(200, $(".OutoftheBox .ajax-filelist"), function () {
     $(this).load(function () {
       $(this).removeClass('preloading');
@@ -198,8 +214,10 @@ jQuery(document).ready(function ($) {
             crop = $('#OutoftheBox_crop').prop("checked"),
             slideshow = $('#OutoftheBox_slideshow').prop("checked"),
             pausetime = $('#OutoftheBox_pausetime').val(),
+            show_filenames = $('#OutoftheBox_showfilenames').prop("checked"),
             maximages = $('#OutoftheBox_maximage').val(),
             target_height = $('#OutoftheBox_targetHeight').val(),
+            folder_thumbs = $('#OutoftheBox_folderthumbs').prop("checked"),
             max_width = $('#OutoftheBox_max_width').val(),
             max_height = $('#OutoftheBox_max_height').val(),
             upload = $('#OutoftheBox_upload').prop("checked"),
@@ -351,10 +369,19 @@ jQuery(document).ready(function ($) {
       case 'files':
       case 'gallery':
       case 'upload':
+      case 'search':
         if (mode === 'gallery') {
+
+          if (show_filenames === true) {
+            data += 'showfilenames="1" ';
+          }
 
           if (maximages !== '') {
             data += 'maximages="' + maximages + '" ';
+          }
+
+          if (folder_thumbs === false) {
+            data += 'folderthumbs="0" ';
           }
 
           if (target_height !== '') {
@@ -369,7 +396,7 @@ jQuery(document).ready(function ($) {
           }
         }
 
-        if (mode === 'files') {
+        if (mode === 'files' || mode === 'search') {
           if (show_files === false) {
             data += 'showfiles="0" ';
           }
@@ -425,7 +452,7 @@ jQuery(document).ready(function ($) {
           data += 'showrefreshbutton="0" ';
         }
 
-        if (search === false) {
+        if (search === false && mode !== 'search') {
           data += 'search="0" ';
         } else {
           if (search_field === true) {
@@ -571,6 +598,17 @@ jQuery(document).ready(function ($) {
     }
   }
 
+  function insertOutoftheBoxShortCodeWC(event) {
+    event.preventDefault();
+
+    var data = createShortcode();
+    if (data !== false) {
+      $('#outofthebox_upload_box_shortcode', window.parent.document).val(data);
+      window.parent.tb_remove();
+    }
+  }
+
+
   function showRawShortcode() {
     /* Close any open modal windows */
     $('#outofthebox-modal-action').remove();
@@ -578,7 +616,7 @@ jQuery(document).ready(function ($) {
     /* Build the Delete Dialog */
 
     var modalbuttons = '';
-    modalbuttons += '<button class="button outofthebox-modal-copy-btn" type="button" title="' + OutoftheBox_vars.str_copy_to_clipboard_title + '" >' + OutoftheBox_vars.str_copy_to_clipboard_title + '</button>';
+    modalbuttons += '<button class="simple-button blue outofthebox-modal-copy-btn" type="button" title="' + OutoftheBox_vars.str_copy_to_clipboard_title + '" >' + OutoftheBox_vars.str_copy_to_clipboard_title + '</button>';
     var modalheader = $('<a tabindex="0" class="close-button" title="' + OutoftheBox_vars.str_close_title + '" onclick="modal_action.close();"><i class="fa fa-times fa-lg" aria-hidden="true"></i></a></div>');
     var modalbody = $('<div class="outofthebox-modal-body" tabindex="0" ><strong>' + shortcode + '</strong></div>');
     var modalfooter = $('<div class="outofthebox-modal-footer"><div class="outofthebox-modal-buttons">' + modalbuttons + '</div></div>');

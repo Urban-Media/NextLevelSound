@@ -66,7 +66,7 @@ class AdminNotice {
 
 						$success_message = sprintf(
 							// translators: Discourse post-published success message. Placeholder: discourse_permalink.
-							__( '<div class="notice notice-success is-dismissible"><p>You\'re post has been published to Discourse. %1$s on Discourse.</p></div>', 'wp-discourse' ), $discourse_link
+							__( '<div class="notice notice-success is-dismissible"><p>Your post has been published to Discourse. %1$s on Discourse.</p></div>', 'wp-discourse' ), $discourse_link
 						);
 
 						delete_post_meta( $post_id, 'wpdc_publishing_response' );
@@ -110,7 +110,7 @@ network options have been moved to the Network Admin Dashboard.</p></div>', 'wp-
 
 		// Setting changed notices.
 		$settings_change_notice_seen = get_option( 'wpdc_settings_update_notice_150' );
-		if ( ! empty( $this->options['auto-create-sso-user'] )  && ! $settings_change_notice_seen ) {
+		if ( ! empty( $this->options['auto-create-sso-user'] ) && ! $settings_change_notice_seen ) {
 			add_option( 'wpdc_settings_update_notice_150', 1 );
 
 			$settings_changed_notice = __(

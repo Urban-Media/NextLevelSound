@@ -425,6 +425,7 @@ class Client {
             }
 
             foreach ($entries_to_add as $entry_metadata) {
+                ( ob_get_level() > 0 ) ? ob_flush() : flush();
                 $zip = $this->_add_entry_to_zip($zip, $entry_metadata);
                 $files_added_to_zip[] = $entry;
             }
@@ -452,21 +453,22 @@ class Client {
 
             /* Get file */
             $stream = fopen('php://temp', 'r+');
-            /* @var $download_file \Kunnu\Dropbox\Models\File */
-            $download_file = $this->_client->download($entry->get_id());
-            fwrite($stream, $download_file->getContents());
-            rewind($stream);
 
-            /* Add file contents to zip */
             try {
+                /* @var $download_file \Kunnu\Dropbox\Models\File */
+                $download_file = $this->_client->download($entry->get_id());
+                fwrite($stream, $download_file->getContents());
+                rewind($stream);
+
+                /* Add file contents to zip */
                 $zip->addLargeFile($stream, ltrim($path, '/'), $entry->get_last_edited(), $entry->get_description());
+
+                fclose($stream);
             } catch (\Exception $ex) {
                 error_log($ex->getMessage());
                 fclose($stream);
                 /* To Do Log */
             }
-
-            fclose($stream);
         }
 
         return $zip;
@@ -541,10 +543,10 @@ class Client {
         try {
             $temporarily_link = $this->_client->getTemporaryLink($entry->get_path());
             $cached_entry = $this->get_cache()->add_to_cache($entry);
-            
+
             $max_cache_request = ((int) $this->get_processor()->get_setting('request_cache_max_age')) * 60;
             $expires = time() + (4 * 60 * 60) - $max_cache_request;
-            
+
             $cached_entry->add_temporarily_link($temporarily_link->getLink(), $expires);
         } catch (\Exception $ex) {
             return false;

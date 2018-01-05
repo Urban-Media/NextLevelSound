@@ -2,8 +2,8 @@
 Contributors: cdck, retlehs, samsaffron, scossar, techapj
 Tags: discourse, forum, comments, sso
 Requires at least: 4.7
-Tested up to: 4.9
-Stable tag: 1.5.2
+Tested up to: 4.9.1
+Stable tag: 1.5.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -127,6 +127,23 @@ To create a coherent top menu, see our tutorial on how to make a [Custom nav hea
 == Changelog ==
 
 **Note:** The wp-discourse plugin requires >=PHP-5.4.0 to be running on your server.
+
+#### 1.5.5 27/12/2017
+
+- Fix comment character encoding for libxml versions < 2.8.0
+
+#### 1.5.4 10/12/2017
+
+- Add an option to load Discourse comments with an ajax call
+- Add action hooks to SSO Provider functions
+- Add unlink_from_discourse checkbox to deal with cases where a post's associated topic has been deleted on Discourse
+- Improve error message when posts fail to publish to Discourse
+- Add filter to sso_client redirect_url
+- Fix sanitization of sso_secret and webhook_secret
+
+#### 1.5.3 23/11/2017
+
+- Fix require activation for users created through API
 
 #### 1.5.2 22/11/2017
 

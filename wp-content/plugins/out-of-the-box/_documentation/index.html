@@ -146,7 +146,7 @@
                       </ul>
 
                     </li>
-                    <li><a href="#releasenotes">Release Notes (version 1.9.5.1)</a></li>
+                    <li><a href="#releasenotes">Release Notes (version 1.10)</a></li>
 
                   </ul>
                 </div>
@@ -649,12 +649,12 @@
 
                   <div class="row tim-row" id="supported-integrations">
 
-                    <h2>Supported Integrations</h2>
+                    <h2 id="woocommerce">Supported Integrations</h2>
 
-                    <div class="tim-row" id="woocommerce">
+                    <h3>WooCommerce Integration</h3>
+                    <legend></legend>
 
-                      <h3>WooCommerce Integration</h3>
-                      <legend></legend>
+                    <div class="tim-row" >  
 
                       <p>Out-of-the-Box integrates nicely into WooCommerce and it allows you to serve your Digital Downloads directly from Dropbox! To add a Digital Product from your Dropbox, follow these instructions:</p>
 
@@ -671,6 +671,41 @@
                       <a href="assets/img/instructions/woocommerce.png" data-title="WooCommerce Digitial Downloads Integration"  data-toggle="lightbox">
                         <img src="assets/img/instructions/woocommerce.png" class="img-responsive img-raised">
                       </a>
+                    </div>
+
+                    <div class="tim-row">
+
+                      <h4>Upload integration</h4>
+                      <p>Out-of-the-Box allows you to create products where your customers can directly attach their Documents after purchasing. The plugin can create a Order specific folder on the linked Cloud Account and it will add a customizable Upload Box to the order page and the Thank You page.
+                        In order to enable the Upload Box for your products, follow these instructions</p>
+
+                      <ol>
+                        <li><b>Create</b> a new WooCommerce Product (<b>Products</b> -><b> Add New</b>) or <b>open</b> an existing one</li>
+                        <li>In the Product Data section, <b>tick</b> the <b>Uploads checkbox</b></li>
+                        <li>On the <b>Upload to Cloud</b> tab that appears, <b>enable</b> the "Upload to Dropbox" checkbox</li>
+                        <li>Set in the <b>Title Upload Box</b> the title which should appear above the Upload Box.</li>
+                        <li>Create your own Upload Box via the <b>Build your Upload Box</b> button, or edit the shortcode manually.</li>
+                        <li>In the <b>Upload Folder Name</b> field, set the template which should be used for the Order Specific Folders*.</li>
+                        <li>Save the product!</li>
+                      </ol>
+
+                      <br/><br/>
+
+                      <div class="alert alert-warning">
+                        <div class="container-fluid">
+                          <div class="alert-icon">
+                            <i class="material-icons">warning</i>
+                          </div>
+                          * In order to use the Order Specific Folders, make sure that the Private Folder feature is enabled in the Shortcode. You can find this settings on the User Folders tab. 
+                        </div>
+                      </div>
+
+                      <br/><br/>
+
+                      <a href="assets/img/instructions/woocommerce-upload-1.png" data-title="WooCommerce Uploads Integration"  data-toggle="lightbox">
+                        <img src="assets/img/instructions/woocommerce-upload-1.png" class="img-responsive img-raised">
+                      </a>
+
                     </div>
 
                     <div class="tim-row" id="gravity-forms">
@@ -848,6 +883,26 @@
                         </tr>
                       </thead>
                       <tbody>
+                        <tr>
+                          <td>1.10.1</td>
+                          <td>21 December 2017</td>
+                          <td><ul>
+                              <li>Fix: Zip function not properly adding files to archive</li>
+                            </ul></td>
+                        </tr>
+                        <tr>
+                          <td>1.10</td>
+                          <td>14 December 2017</td>
+                          <td><ul>
+                              <li>Fix: Unexpected initation of authorization when multiple plugins are using the same oAuth 2.0 Flow</li>
+                              <li>Added: New Settings to change colors & loaders the plugin uses via main settings page</li>
+                              <li>Added: WooCommerce Upload integration. Customers can now upload documents for bought products to the cloud</li>
+                              <li>Added: Search Box mode</li>
+                              <li>Added: Shortcode Option to show files names in Gallery mode</li>
+                              <li>Improved: Restyled part of the plugin</li>
+                              <li>Updated: The Auto Updater library is using version 4.3</li>
+                            </ul></td>
+                        </tr>
                         <tr>
                           <td>1.9.5.1</td>
                           <td>20 November 2017</td>

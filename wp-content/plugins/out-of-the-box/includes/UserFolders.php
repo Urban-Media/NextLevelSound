@@ -27,6 +27,12 @@ class UserFolders {
         $this->_client = $_processor->get_client();
         $this->_processor = $_processor;
         $this->_user_name_template = $this->get_processor()->get_setting('userfolder_name');
+
+
+        $shortcode = $this->get_processor()->get_shortcode();
+        if (!empty($shortcode) && !empty($shortcode['user_folder_name_template'])) {
+            $this->_user_name_template = $shortcode['user_folder_name_template'];
+        }
     }
 
     public function get_auto_linked_folder_name_for_user() {
@@ -231,7 +237,7 @@ class UserFolders {
 
     public function get_user_name_template($user_data) {
 
-        return strtr($this->_user_name_template, array(
+        $user_folder_name = strtr($this->_user_name_template, array(
             "%user_login%" => isset($user_data->user_login) ? $user_data->user_login : '',
             "%user_email%" => isset($user_data->user_email) ? $user_data->user_email : '',
             "%user_firstname%" => isset($user_data->user_firstname) ? $user_data->user_firstname : '',
@@ -241,6 +247,9 @@ class UserFolders {
             "%user_role%" => isset($user_data->roles) ? implode(',', $user_data->roles) : '',
             "%jjjj-mm-dd%" => date('Y-m-d')
         ));
+
+
+        return apply_filters('outofthebox_private_folder_name', $user_folder_name, $this->get_processor());
     }
 
     public function get_guest_user_name() {
@@ -252,14 +261,16 @@ class UserFolders {
         $current_user->ID = $username;
         $current_user->user_role = __('Guest', 'outofthebox');
 
-        return __('Guests', 'outofthebox') . ' - ' . $this->get_user_name_template($current_user);
+        $user_folder_name = $this->get_user_name_template($current_user);
+
+        return apply_filters('outofthebox_private_folder_name_guests', __('Guests', 'outofthebox') . ' - ' . $user_folder_name, $this->get_processor());
     }
 
     public function get_guest_id() {
         $id = uniqid();
         if (!isset($_COOKIE['OftB-ID'])) {
             $expire = time() + 60 * 60 * 24 * 7;
-            @setcookie('OftB-ID', $id, $expire, '/');
+            @setcookie('OftB-ID', $id, $expire, COOKIEPATH, COOKIE_DOMAIN);
         } else {
             $id = $_COOKIE['OftB-ID'];
         }

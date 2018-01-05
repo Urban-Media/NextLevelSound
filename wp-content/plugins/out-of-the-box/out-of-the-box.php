@@ -6,14 +6,14 @@ namespace TheLion\OutoftheBox;
   Plugin Name: WP Cloud Plugin Out-of-the-Box (Dropbox)
   Plugin URI: https://www.wpcloudplugins.com/plugins/out-of-the-box-wordpress-plugin-for-dropbox/
   Description: Say hello to the most popular WordPress Dropbox plugin! Start using the Cloud even more efficiently by integrating it on your website.
-  Version: 1.9.5.1
+  Version: 1.10.1
   Author: WP Cloud Plugins
   Author URI: https://www.wpcloudplugins.com
   Text Domain: outofthebox
  */
 
 /* * ***********SYSTEM SETTINGS****************** */
-define('OUTOFTHEBOX_VERSION', '1.9.5.1');
+define('OUTOFTHEBOX_VERSION', '1.10.1');
 define('OUTOFTHEBOX_ROOTPATH', plugins_url('', __FILE__));
 define('OUTOFTHEBOX_ROOTDIR', __DIR__);
 define('OUTOFTHEBOX_CACHEDIR', WP_CONTENT_DIR . '/out-of-the-box-cache/');
@@ -70,6 +70,7 @@ class Main {
         }
 
         add_action('wp_footer', array(&$this, 'load_custom_css'), 100);
+        add_action('admin_footer', array(&$this, 'load_custom_css'), 100);
 
         /* Ajax calls */
         add_action('wp_ajax_nopriv_outofthebox-get-filelist', array(&$this, 'start_process'));
@@ -182,6 +183,8 @@ class Main {
             'google_analytics' => 'No',
             'lightbox_skin' => 'metro-black',
             'lightbox_path' => 'horizontal',
+            'lightbox_rightclick' => 'No',
+            'lightbox_showcaption' => 'click',
             'mediaplayer_skin' => 'default',
             'userfolder_name' => '%user_login% (%user_email%)',
             'userfolder_oncreation' => 'Yes',
@@ -205,6 +208,8 @@ class Main {
             'permissions_add_links' => array('administrator', 'editor', 'author', 'contributor'),
             'permissions_add_embedded' => array('administrator', 'editor', 'author', 'contributor'),
             'custom_css' => '',
+            'loaders' => array(),
+            'colors' => array(),
             'gzipcompression' => '',
             'request_cache_max_age' => ''
         ));
@@ -339,6 +344,43 @@ class Main {
             $updated = true;
         }
 
+        if (empty($this->settings['colors'])) {
+            $this->settings['colors'] = array(
+                'style' => 'light',
+                'background' => '#f2f2f2',
+                'accent' => '#29ADE2',
+                'black' => '#222',
+                'dark1' => '#666',
+                'dark2' => '#999',
+                'white' => '#fff',
+                'light1' => '#fcfcfc',
+                'light2' => '#e8e8e8',
+            );
+            $updated = true;
+        }
+
+        if (empty($this->settings['loaders'])) {
+            $this->settings['loaders'] = array(
+                'style' => 'spinner',
+                'loading' => OUTOFTHEBOX_ROOTPATH . '/css/images/loader_loading.gif',
+                'no_results' => OUTOFTHEBOX_ROOTPATH . '/css/images/loader_no_results.png',
+                'error' => OUTOFTHEBOX_ROOTPATH . '/css/images/loader_error.png',
+                'upload' => OUTOFTHEBOX_ROOTPATH . '/css/images/loader_upload.gif',
+                'protected' => OUTOFTHEBOX_ROOTPATH . '/css/images/loader_protected.png',
+            );
+            $updated = true;
+        }
+
+        if (empty($this->settings['lightbox_rightclick'])) {
+            $this->settings['lightbox_rightclick'] = 'No';
+            $updated = true;
+        }
+
+        if (empty($this->settings['lightbox_showcaption'])) {
+            $this->settings['lightbox_showcaption'] = 'click';
+            $updated = true;
+        }
+
         if ($updated) {
             update_option('out_of_the_box_settings', $this->settings);
         }
@@ -360,7 +402,7 @@ class Main {
     public function load_scripts() {
 
         $skin = $this->settings['mediaplayer_skin'];
-        if ((!file_exists(OUTOFTHEBOX_ROOTDIR . "/skins/$skin/OutoftheBox_Media.js")) ||
+        if ((!file_exists(OUTOFTHEBOX_ROOTDIR . "/skins/$skin/Media.js")) ||
                 (!file_exists(OUTOFTHEBOX_ROOTDIR . "/skins/$skin/css/style.css")) ||
                 (!file_exists(OUTOFTHEBOX_ROOTDIR . "/skins/$skin/player.php"))) {
             $skin = 'default';
@@ -371,13 +413,13 @@ class Main {
         wp_register_script('jQuery.jplayer.playlist', plugins_url("/skins/$skin/jquery.jplayer/jquery.jplayer.min.js", __FILE__), array('jquery'));
 
         /* load in footer */
-        wp_register_script('OutoftheBox.Media', plugins_url("/skins/$skin/OutoftheBox_Media.js", __FILE__), array('jquery'), false, true);
+        wp_register_script('OutoftheBox.Media', plugins_url("/skins/$skin/Media.js", __FILE__), array('jquery'), false, true);
         wp_register_script('jQuery.iframe-transport', plugins_url('includes/jquery-file-upload/js/jquery.iframe-transport.js', __FILE__), array('jquery'), false, true);
         wp_register_script('jQuery.fileupload', plugins_url('includes/jquery-file-upload/js/jquery.fileupload.js', __FILE__), array('jquery'), false, true);
         wp_register_script('jQuery.fileupload-process', plugins_url('includes/jquery-file-upload/js/jquery.fileupload-process.js', __FILE__), array('jquery'), false, true);
 
         wp_register_script('OutoftheBox.Libraries', plugins_url('includes/js/library.js', __FILE__), array('jquery'), OUTOFTHEBOX_VERSION, true);
-        wp_register_script('OutoftheBox', plugins_url('includes/js/OutoftheBox.min.js', __FILE__), array('jquery', 'OutoftheBox.Libraries'), OUTOFTHEBOX_VERSION, true);
+        wp_register_script('OutoftheBox', plugins_url('includes/js/Main.min.js', __FILE__), array('jquery', 'OutoftheBox.Libraries'), OUTOFTHEBOX_VERSION, true);
 
         wp_register_script('OutoftheBox.tinymce', plugins_url('includes/js/Tinymce_popup.js', __FILE__), array('jquery'), OUTOFTHEBOX_VERSION, true);
 
@@ -388,9 +430,13 @@ class Main {
             'plugin_url' => plugins_url('', __FILE__),
             'ajax_url' => admin_url('admin-ajax.php'),
             'js_url' => plugins_url('/skins/' . $this->settings['mediaplayer_skin'] . '/jquery.jplayer', __FILE__),
+            'cookie_path' => COOKIEPATH,
+            'cookie_domain' => COOKIE_DOMAIN,
             'is_mobile' => wp_is_mobile(),
             'lightbox_skin' => $this->settings['lightbox_skin'],
             'lightbox_path' => $this->settings['lightbox_path'],
+            'lightbox_rightclick' => $this->settings['lightbox_rightclick'],
+            'lightbox_showcaption' => $this->settings['lightbox_showcaption'],
             'post_max_size' => $post_max_size_bytes,
             'google_analytics' => (($this->settings['google_analytics'] === 'Yes') ? 1 : 0),
             'refresh_nonce' => wp_create_nonce("outofthebox-get-filelist"),
@@ -456,14 +502,14 @@ class Main {
         wp_register_style('ilightbox-skin-outofthebox', plugins_url('includes/iLightBox/' . $skin . '-skin/skin.css', __FILE__), false);
         wp_register_style('qtip', plugins_url('includes/jquery-qTip/jquery.qtip.min.css', __FILE__), null, false);
         wp_register_style('Awesome-Font-css', plugins_url('includes/font-awesome/css/font-awesome.min.css', __FILE__), false);
-        wp_register_style('OutoftheBox', plugins_url("css/outofthebox$is_rtl_css.css", __FILE__), array('Awesome-Font-css'), OUTOFTHEBOX_VERSION);
-        wp_register_style('OutoftheBox.tinymce', plugins_url("css/outofthebox_tinymce$is_rtl_css.css", __FILE__), null, OUTOFTHEBOX_VERSION);
+        wp_register_style('OutoftheBox', plugins_url("css/main$is_rtl_css.css", __FILE__), array('Awesome-Font-css'), OUTOFTHEBOX_VERSION);
+        wp_register_style('OutoftheBox.tinymce', plugins_url("css/tinymce$is_rtl_css.css", __FILE__), null, OUTOFTHEBOX_VERSION);
     }
 
     public function load_IE_styles() {
 
         echo "<!--[if IE]>\n";
-        echo "<link rel='stylesheet' type='text/css' href='" . plugins_url('css/outofthebox-skin-ie.css', __FILE__) . "' />\n";
+        echo "<link rel='stylesheet' type='text/css' href='" . plugins_url('css/skin-ie.css', __FILE__) . "' />\n";
         echo "<![endif]-->\n";
     }
 
@@ -513,12 +559,38 @@ class Main {
     }
 
     public function load_custom_css() {
+        $css_html = '<!-- Custom OutoftheBox CSS Styles -->' . "\n";
+        $css_html .= '<style type="text/css" media="screen">' . "\n";
+        $css = '';
+
         if (!empty($this->settings['custom_css'])) {
-            echo '<!-- Custom OutoftheBox CSS Styles -->' . "\n";
-            echo '<style type="text/css" media="screen">' . "\n";
-            echo $this->settings['custom_css'] . "\n";
-            echo '</style>' . "\n";
+            $css .= $this->settings['custom_css'] . "\n";
         }
+
+        if ($this->settings['loaders']['style'] === 'custom') {
+            $css .= "#OutoftheBox .loading{  background-image: url(" . $this->settings['loaders']['loading'] . ");}" . "\n";
+            $css .= "#OutoftheBox .loading.upload{    background-image: url(" . $this->settings['loaders']['upload'] . ");}" . "\n";
+            $css .= "#OutoftheBox .loading.error{  background-image: url(" . $this->settings['loaders']['error'] . ");}" . "\n";
+        }
+
+        $css .= $this->get_color_css();
+
+        $css_html .= \TheLion\OutoftheBox\Helpers::compress_css($css);
+        $css_html .= '</style>' . "\n";
+
+        echo $css_html;
+    }
+
+    public function get_color_css() {
+        $css = file_get_contents(OUTOFTHEBOX_ROOTDIR . '/css/skin.' . $this->settings['colors']['style'] . '.min.css');
+        return preg_replace_callback('/%(.*)%/iU', array(&$this, 'fill_placeholder_styles'), $css);
+    }
+
+    public function fill_placeholder_styles($matches) {
+        if (isset($this->settings['colors'][$matches[1]])) {
+            return $this->settings['colors'][$matches[1]];
+        }
+        return 'initial';
     }
 
     public function create_template($atts = array()) {

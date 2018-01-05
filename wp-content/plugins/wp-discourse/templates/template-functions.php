@@ -77,14 +77,13 @@ class TemplateFunctions {
 		// Allows parsing misformed html. Save the previous value of libxml_use_internal_errors so that it can be restored.
 		$use_internal_errors = libxml_use_internal_errors( true );
 
-		$doc = new \DOMDocument( '1.0', 'utf-8' );
-		$html = '<!DOCTYPE html><html><head><meta charset="utf-8"></head><body><div id="inner-content">' . $content . '</div></body></html>';
-		$doc->loadHTML( $html );
+		$doc  = new \DOMDocument( '1.0', 'utf-8' );
+		$doc->loadHTML( mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' ) );
 
 		// Mentions and hashtags.
 		$links = $doc->getElementsByTagName( 'a' );
 		foreach ( $links as $link ) {
-			$href = $link->getAttribute( 'href' );
+			$href      = $link->getAttribute( 'href' );
 			$url_parts = wp_parse_url( $href );
 
 			if ( empty( $url_parts['host'] ) ) {
@@ -95,7 +94,7 @@ class TemplateFunctions {
 		// Images, emojis etc.
 		$images = $doc->getElementsByTagName( 'img' );
 		foreach ( $images as $image ) {
-			$src = $image->getAttribute( 'src' );
+			$src       = $image->getAttribute( 'src' );
 			$url_parts = wp_parse_url( $src );
 
 			if ( empty( $url_parts['host'] ) ) {
@@ -103,31 +102,16 @@ class TemplateFunctions {
 			}
 		}
 
-		$inner_html = self::inner_html( $doc->getElementById( 'inner-content' ) );
-
 		// Clear the libxml error buffer.
 		libxml_clear_errors();
 		// Restore the previous value of libxml_use_internal_errors.
 		libxml_use_internal_errors( $use_internal_errors );
 
-		return $inner_html;
-	}
+		$parsed = $doc->saveHTML( $doc->documentElement );
 
-	/**
-	 * Extracts the childNodes from a DOMElement and saves them to a string.
-	 *
-	 * @param \DOMElement $element The DOMElement to extract from.
-	 *
-	 * @return string
-	 */
-	protected static function inner_html( \DOMElement $element ) {
-		$doc = $element->ownerDocument;
-		$html = '';
+		// Remove DOCTYPE, html, and body tags that have been added to the DOMDocument.
+		$parsed = preg_replace( '~<(?:!DOCTYPE|/?(?:html|body))[^>]*>\s*~i', '', $parsed );
 
-		foreach ( $element->childNodes as $node ) {
-			$html .= $doc->saveHTML( $node );
-		}
-
-		return $html;
+		return $parsed;
 	}
 }

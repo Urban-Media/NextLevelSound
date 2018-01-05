@@ -1,6 +1,6 @@
 === Out-of-the-Box ===
 Requires at least: 3.9
-Tested up to: 4.9
+Tested up to: 4.9.1
 
 Say hello to the most popular WordPress Dropbox plugin! Outofthebox is a user-friendly, highly customizable, innovative Dropbox integration plugin for WordPress that displays your Dropbox files in a beautiful way. No coding skills required!
 

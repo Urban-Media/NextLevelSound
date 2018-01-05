@@ -54,6 +54,8 @@ class Admin {
 
         /* Notices */
         add_action('admin_notices', array(&$this, 'get_admin_notice_not_authorized'));
+
+        add_filter('admin_footer_text', array($this, 'admin_footer_text'), 1);
     }
 
     /**
@@ -106,7 +108,11 @@ class Admin {
         if ($hook == $this->settingspage) {
             wp_enqueue_script('jquery-form');
             wp_enqueue_script('OutoftheBox.tinymce');
-            ;
+            wp_enqueue_script('wp-color-picker-alpha', plugins_url('/wp-color-picker-alpha/wp-color-picker-alpha.min.js', __FILE__), array('wp-color-picker'), '1.0.0', true);
+            wp_enqueue_style('wp-color-picker');
+            wp_enqueue_script('jquery-ui-accordion');
+            wp_enqueue_media();
+            add_thickbox();
         }
 
         if ($hook == $this->userpage) {
@@ -217,6 +223,10 @@ class Admin {
                 $new_settings['dropbox_app_key'] = '';
                 $new_settings['dropbox_app_secret'] = '';
             }
+
+            if ($setting_key === 'colors') {
+                $value = $this->_check_colors($value, $old_settings['colors']);
+            }
         }
 
         return $new_settings;
@@ -233,6 +243,38 @@ class Admin {
                 )
         );
         exit;
+    }
+
+    private function _check_colors($colors, $old_colors) {
+        $regex = '/(light|dark|transparent|#(?:[0-9a-f]{2}){2,4}|#[0-9a-f]{3}|(?:rgba?|hsla?)\((?:\d+%?(?:deg|rad|grad|turn)?(?:,|\s)+){2,3}[\s\/]*[\d\.]+%?\))/i';
+
+        foreach ($colors as $color_id => &$color) {
+            if (preg_match($regex, $color) !== 1) {
+                $color = $old_colors[$color_id];
+            }
+        }
+
+        return $colors;
+    }
+
+    public function admin_footer_text($footer_text) {
+
+        $rating_asked = get_option('out_of_the_box_rating_asked', false);
+        if ($rating_asked == true || (Helpers::check_user_role($this->settings['permissions_edit_settings'])) === false) {
+            return $footer_text;
+        }
+
+        $current_screen = get_current_screen();
+
+        if (isset($current_screen->id) && in_array($current_screen->id, array($this->filebrowserpage, $this->userpage, $this->settingspage))) {
+            $onclick = "jQuery.post( '" . admin_url('admin-ajax.php') . "', { action: 'outofthebox-rating-asked' });jQuery( this ).parent().text( jQuery( this ).data( 'rated' ) )";
+
+            $footer_text = sprintf(
+                    __('If you like %1$s please leave us a %2$s rating. A huge thanks in advance!', 'outofthebox'), sprintf('<strong>%s</strong>', esc_html__('Share-one-Drive', 'outofthebox')), '<a href="https://codecanyon.net/item/outofthebox-dropbox-plugin-for-wordpress-/reviews/5529125" target="_blank" class="outofthebox-rating-link" data-rated="' . esc_attr__('Thanks :)', 'outofthebox') . '"  onclick="' . $onclick . '">&#9733;&#9733;&#9733;&#9733;&#9733;</a>'
+            );
+        }
+
+        return $footer_text;
     }
 
     function load_filebrowser_page() {
@@ -568,7 +610,7 @@ class Admin {
         add_filter('mce_buttons', array(&$this, 'register_tinymce_plugin_buttons'));
 
         /* Add custom CSs for placeholders */
-        add_editor_style(OUTOFTHEBOX_ROOTPATH . '/css/outofthebox_tinymce_editor.css');
+        add_editor_style(OUTOFTHEBOX_ROOTPATH . '/css/tinymce_editor.css');
     }
 
     //This callback registers our plug-in

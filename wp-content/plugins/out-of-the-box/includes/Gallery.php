@@ -24,7 +24,8 @@ class Gallery {
     }
 
     public function get_images_list() {
-        $this->_folder = $this->get_processor()->get_client()->get_folder(null, true, true, true);
+        $recursive = ($this->get_processor()->get_shortcode_option('folderthumbs') === '1');
+        $this->_folder = $this->get_processor()->get_client()->get_folder(null, true, true, $recursive);
 
         if (($this->_folder !== false)) {
             $this->renderImagesList();
@@ -179,27 +180,28 @@ class Gallery {
             $return .= "</div>";
         }
         $return .= "<a title='" . $item->get_name() . "'>";
+        $return .= "<div class='preloading'></div>";
         $return .= "<img class='preloading image-folder-img' src='" . OUTOFTHEBOX_ROOTPATH . "/css/images/transparant.png' data-src='" . plugins_url('css/images/folder.png', dirname(__FILE__)) . "' width='$target_height' height='$target_height' style='width:{$target_height}px !important;height:{$target_height}px !important; '/>";
 
+        if ($this->get_processor()->get_shortcode_option('folderthumbs') === '1') {
+            $i = 1;
+            if ($item->has_children()) {
+                foreach ($item->get_children() as $folder_child) {
+                    if ($i > 3) {
+                        break;
+                    }
 
-        $i = 1;
-        if ($item->has_children()) {
-            foreach ($item->get_children() as $folder_child) {
-                if ($i > 3) {
-                    break;
+                    if ($folder_child->has_own_thumbnail() === false) {
+                        continue;
+                    }
+
+                    $thumbnail_url = $this->get_processor()->get_client()->get_thumbnail($folder_child, true, $target_height * 1.5, $target_height * 1.5, true);
+                    $return .= "<div class='folder-thumb thumb$i' style='width:" . $target_height . "px;height:" . $target_height . "px;background-image: url(" . $thumbnail_url . ")'></div>";
+
+                    $i++;
                 }
-
-                if ($folder_child->has_own_thumbnail() === false) {
-                    continue;
-                }
-
-                $thumbnail_url = $this->get_processor()->get_client()->get_thumbnail($folder_child, true, $target_height * 1.5, $target_height * 1.5, true);
-                $return .= "<div class='folder-thumb thumb$i' style='width:" . $target_height . "px;height:" . $target_height . "px;background-image: url(" . $thumbnail_url . ")'></div>";
-
-                $i++;
             }
         }
-
 
 
 
@@ -261,8 +263,17 @@ class Gallery {
         /* Search API call doesn't return image sizes... grrr, so in that case crop the image) */
         $height = $target_height;
         $width = ($this->_search === false && ($item->get_media('width') > 0) && ($item->get_media('height') > 0)) ? round(($target_height / $item->get_media('height')) * $item->get_media('width')) : $target_height;
-
+        $return .= "<div class='preloading'></div>";
         $return .= "<img class='preloading $hidden_class' src='" . OUTOFTHEBOX_ROOTPATH . "/css/images/transparant.png' data-src='" . $thumbnail_url . "' width='$width' height='$height' style='width:{$width}px !important;height:{$height}px !important; '/>";
+
+        $text = '';
+        if ($this->get_processor()->get_shortcode_option('show_filenames') === '1') {
+            $text = $item->get_basename();
+
+            $text = apply_filters('outofthebox_gallery_entry_text', $text, $item, $this);
+            $return .= "<div class='entry-text'>" . $text . "</div>";
+        }
+
         $return .= "</a>";
 
         $return .= "</div>\n";
@@ -311,7 +322,7 @@ class Gallery {
                 $height = $this->get_processor()->get_shortcode_option('targetheight');
                 $html .= "<div class='image-container image-folder image-add-folder grey newfolder'>";
                 $html .= "<a title='" . __('Add folder', 'outofthebox') . "'><div class='folder-text'>" . __('Add folder', 'outofthebox') . "</div>";
-                $html .= "<img class='preloading' src='" . OUTOFTHEBOX_ROOTPATH . "/css/images/transparant.png' data-src='" . plugins_url('css/images/addfolder.png', dirname(__FILE__)) . "' width='$height' height='$height' style='width:" . $height . "px;height:" . $height . "px;'/>";
+                $html .= "<img class='preloading' src='" . OUTOFTHEBOX_ROOTPATH . "/css/images/transparant.png' data-src='" . plugins_url('css/images/folder.png', dirname(__FILE__)) . "' width='$height' height='$height' style='width:" . $height . "px;height:" . $height . "px;'/>";
                 $html .= "</a>";
                 $html .= "</div>\n";
             }

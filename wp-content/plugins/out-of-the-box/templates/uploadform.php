@@ -6,15 +6,14 @@
       <input type="hidden" name="maxnumberofuploads" value="<?php echo $max_number_of_uploads; ?>">
       <div class="fileupload-drag-drop">
         <div>
-          <img src="<?php echo OUTOFTHEBOX_ROOTPATH . '/css/images/drag-upload.png'; ?>" height="98" width="190"/>
+          <i class="upload-icon fa fa-plus-circle fa-3x" aria-hidden="true"></i>
           <p><?php _e('Drag your files here', 'outofthebox'); ?> ...</p>
         </div>
       </div>
 
-      <div class='fileupload-list'>
+      <div class='fileupload-list' onclick='jQuery(".upload-input-button:first").trigger("click")'>
         <div role="presentation">
           <div class="files"></div>
-
         </div>
         <input type='hidden' name='fileupload-filelist' id='fileupload-filelist' class='fileupload-filelist' value='<?php echo (isset($_REQUEST['fileupload-filelist']) ? stripslashes($_REQUEST['fileupload-filelist']) : ''); ?>'>
       </div>
@@ -22,7 +21,7 @@
 
         <div class="fileupload-buttonbar-text">
           <?php _e('... or find documents on your device', 'outofthebox'); ?></div>
-        <div class="upload-btn-container upload-btn upload-btn-primary">
+        <div class="upload-btn-container button">
           <span><?php _e('Add files', 'outofthebox'); ?></span>
           <?php
           ## Mobile browser don't always like the multiple attribute causing bad uploads
@@ -38,7 +37,7 @@
           ?>
 
         </div>
-        <div class="upload-btn-container upload-btn upload-btn-primary upload-folder">
+        <div class="upload-btn-container button upload-folder">
           <span><?php _e('Upload folder', 'outofthebox'); ?></span>
           <input type="file" name="files[]" multiple="multiple" class='upload-input-button upload-multiple-files' multiple directory webkitdirectory>
         </div>
@@ -66,7 +65,7 @@
     <?php _e('Max file size: ', 'outofthebox'); ?> <span class="max-file-size"><?php echo $post_max_size_str; ?></span>
     <?php
     if (!empty($this->options['upload_ext']) && $this->options['upload_ext'] !== '.') {
-        echo " | " . __('Allowed formats: ', 'outofthebox') . ' <span class="max-file-size">' . str_replace('|', ', ', $this->options['upload_ext']) . '</span>';
+        echo " | " . __('Allowed formats: ', 'outofthebox') . ' <span class="file-formats">' . str_replace('|', ', ', $this->options['upload_ext']) . '</span>';
     }
     ?>
   </div>

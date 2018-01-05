@@ -398,6 +398,7 @@ class Processor {
             'userfolders' => '0',
             'usertemplatedir' => '',
             'viewuserfoldersrole' => 'administrator',
+            'userfoldernametemplate' => '',
             'maxuserfoldersize' => '-1',
             'ext' => '*',
             'showfiles' => '1',
@@ -433,7 +434,9 @@ class Processor {
             'quality' => '90',
             'slideshow' => '0',
             'pausetime' => '5000',
-            'targetheight' => '150',
+            'showfilenames' => '0',
+            'targetheight' => '200',
+            'folderthumbs' => '1',
             'mediaextensions' => '',
             'autoplay' => '0',
             'hideplaylist' => '0',
@@ -486,6 +489,8 @@ class Processor {
                 case 'gallery':
                     $ext = ($ext == '*') ? 'gif|jpg|jpeg|png|bmp' : $ext;
                     $uploadext = ($uploadext == '.') ? 'gif|jpg|jpeg|png|bmp' : $uploadext;
+                case 'search':
+                    $searchfrom = 'root';
                 default:
                     $mediaextensions = '';
                     break;
@@ -580,7 +585,9 @@ class Processor {
                 'addfolder_role' => $addfolderrole,
                 'crop' => $crop,
                 'quality' => $quality,
+                'show_filenames' => $showfilenames,
                 'targetheight' => $targetheight,
+                'folderthumbs' => $folderthumbs,
                 'slideshow' => $slideshow,
                 'pausetime' => $pausetime,
                 'mcepopup' => $mcepopup,
@@ -635,6 +642,8 @@ class Processor {
 
         $rootfolder = ''; //(($this->options['user_upload_folders'] !== '0') && !\TheLion\OutoftheBox\Helpers::check_user_role($this->options['view_user_folders_role'])) ? '' : $this->options['root'];
 
+        $colors = $this->get_setting('colors');
+
         if ($this->options['user_upload_folders'] === 'manual') {
             $userfolder = get_user_option('out_of_the_box_linkedto');
             if (is_array($userfolder) && isset($userfolder['foldertext'])) {
@@ -644,7 +653,10 @@ class Processor {
                 if (is_array($defaultuserfolder) && isset($defaultuserfolder['folderid'])) {
                     $rootfolder = $defaultuserfolder['folderid'];
                 } else {
+                    echo "<div id='OutoftheBox' class='{$colors['style']}' style='display:none'>";
+                    $this->load_scripts('general');
                     include(sprintf("%s/templates/noaccess.php", OUTOFTHEBOX_ROOTDIR));
+                    echo "</div>";
                     return;
                 }
             }
@@ -652,7 +664,7 @@ class Processor {
 
         $rootfolder = ($this->options['startpath'] !== false) ? $this->options['startpath'] : $rootfolder;
 
-        echo "<div id='OutoftheBox' style='display:none'>";
+        echo "<div id='OutoftheBox' class='{$colors['style']} {$this->options['mode']}' style='display:none;'>";
         echo "<noscript><div class='OutoftheBox-nojsmessage'>" . __('To view the Dropbox folders, you need to have JavaScript enabled in your browser', 'outofthebox') . ".<br/>";
         echo "<a href='http://www.enable-javascript.com/' target='_blank'>" . __('To do so, please follow these instructions', 'outofthebox') . "</a>.</div></noscript>";
 
@@ -701,6 +713,13 @@ class Processor {
                 echo "<div id='OutoftheBox-$this->listtoken' class='OutoftheBox gridgallery jsdisabled' data-list='gallery' data-token='$this->listtoken' data-org-path='" . rawurlencode($this->_lastPath) . "' data-sort='" . $this->options['sort_field'] . ":" . $this->options['sort_order'] . "'  data-targetheight='" . $this->options['targetheight'] . "' data-deeplink='" . ((!empty($_REQUEST['image'])) ? $_REQUEST['image'] : '') . "' data-slideshow='" . $this->options['slideshow'] . "' data-pausetime='" . $this->options['pausetime'] . "' $nextimages>";
                 include(sprintf("%s/templates/gallery.php", OUTOFTHEBOX_ROOTDIR));
                 $this->render_uploadform();
+                echo "</div>";
+                break;
+
+            case 'search':
+                echo "<div id='OutoftheBox-$this->listtoken' class='OutoftheBox files oftb-list searchlist jsdisabled' data-list='search' data-token='$this->listtoken' data-path='" . rawurlencode($rootfolder) . "' data-org-path='" . rawurlencode($this->_lastPath) . "' data-sort='" . $this->options['sort_field'] . ":" . $this->options['sort_order'] . "' data-deeplink='" . ((!empty($_REQUEST['file'])) ? $_REQUEST['file'] : '') . "' data-layout='list'>";
+                $this->load_scripts('files');
+                include(sprintf("%s/templates/search.php", OUTOFTHEBOX_ROOTDIR));
                 echo "</div>";
                 break;
 

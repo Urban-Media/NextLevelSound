@@ -1,6 +1,6 @@
 jQuery(function ($) {
   var wc_outofthebox = {
-    // hold a reference to the last selected OneDrive button
+    // hold a reference to the last selected Dropbox button
     lastSelectedButton: false,
 
     init: function () {
@@ -39,7 +39,7 @@ jQuery(function ($) {
     },
     /**
      * Adds the click event to the dropbox buttons
-     * and opens the OneDrive chooser
+     * and opens the Dropbox chooser
      */
     addButtonEventHandler: function () {
       $('a.button.insert-outofthebox').on('click', function (e) {

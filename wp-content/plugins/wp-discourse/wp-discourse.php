@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WP-Discourse
  * Description: Use Discourse as a community engine for your WordPress blog
- * Version: 1.5.2
+ * Version: 1.5.5
  * Author: Discourse
  * Text Domain: wp-discourse
  * Domain Path: /languages
@@ -34,39 +34,37 @@ define( 'WPDISCOURSE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WPDISCOURSE_URL', plugins_url( '', __FILE__ ) );
 define( 'MIN_WP_VERSION', '4.7' );
 define( 'MIN_PHP_VERSION', '5.4.0' );
-define( 'WPDISCOURSE_VERSION', '1.5.2' );
+define( 'WPDISCOURSE_VERSION', '1.5.5' );
 
 register_activation_hook( __FILE__, 'wpdc_check_requirements' );
 
-require_once( __DIR__ . '/lib/discourse.php' );
-require_once( __DIR__ . '/lib/discourse-comment.php' );
-require_once( __DIR__ . '/lib/discourse-publish.php' );
-require_once( __DIR__ . '/lib/discourse-sso.php' );
-require_once( __DIR__ . '/lib/discourse-user.php' );
-require_once( __DIR__ . '/lib/nonce.php' );
-require_once( __DIR__ . '/lib/sso.php' );
-require_once( __DIR__ . '/lib/discourse-webhook-refresh.php' );
-require_once( __DIR__ . '/lib/email-notification.php' );
-require_once( __DIR__ . '/lib/sso-login-form.php' );
-require_once( __DIR__ . '/lib/utilities.php' );
-require_once( __DIR__ . '/lib/wordpress-email-verification.php' );
+require_once __DIR__ . '/lib/discourse.php';
+require_once __DIR__ . '/lib/discourse-comment.php';
+require_once __DIR__ . '/lib/discourse-publish.php';
+require_once __DIR__ . '/lib/sso-provider/sso.php';
+require_once __DIR__ . '/lib/sso-provider/discourse-sso.php';
+require_once __DIR__ . '/lib/discourse-user.php';
+require_once __DIR__ . '/lib/discourse-webhook-refresh.php';
+require_once __DIR__ . '/lib/email-notification.php';
+require_once __DIR__ . '/lib/sso-client/sso-login-form.php';
+require_once __DIR__ . '/lib/utilities.php';
+require_once __DIR__ . '/lib/wordpress-email-verification.php';
+require_once __DIR__ . '/lib/discourse-comment-formatter.php';
+require_once __DIR__ . '/lib/sso-client/nonce.php';
+require_once __DIR__ . '/lib/sso-client/button-markup.php';
+require_once __DIR__ . '/lib/sso-client/client.php';
+require_once __DIR__ . '/lib/sso-client/query-redirect.php';
+require_once __DIR__ . '/lib/sso-client/sso-url.php';
+require_once __DIR__ . '/lib/shortcodes/sso-client.php';
+require_once __DIR__ . '/templates/html-templates.php';
+require_once __DIR__ . '/templates/template-functions.php';
+require_once __DIR__ . '/admin/admin.php';
 
-require_once( __DIR__ . '/lib/shortcodes/sso-client.php' );
-
-require_once( __DIR__ . '/templates/html-templates.php' );
-require_once( __DIR__ . '/templates/template-functions.php' );
-
-require_once( __DIR__ . '/lib/sso/button-markup.php' );
-require_once( __DIR__ . '/lib/sso/client.php' );
-require_once( __DIR__ . '/lib/sso/query-redirect.php' );
-require_once( __DIR__ . '/lib/sso/sso-url.php' );
-
-require_once( __DIR__ . '/admin/admin.php' );
-
-$discourse = new WPDiscourse\Discourse\Discourse();
+$discourse                    = new WPDiscourse\Discourse\Discourse();
 $discourse_email_notification = new WPDiscourse\EmailNotification\EmailNotification();
 new WPDiscourse\DiscoursePublish\DiscoursePublish( $discourse_email_notification );
-new WPDiscourse\DiscourseComment\DiscourseComment();
+$discourse_comment_formatter = new WPDiscourse\DiscourseCommentFormatter\DiscourseCommentFormatter();
+new WPDiscourse\DiscourseComment\DiscourseComment( $discourse_comment_formatter );
 $wordpress_email_verifier = new WPDiscourse\WordPressEmailVerification\WordPressEmailVerification( 'discourse_email_verification_key', 'discourse' );
 new WPDiscourse\DiscourseSSO\DiscourseSSO( $wordpress_email_verifier );
 new WPDiscourse\DiscourseUser\DiscourseUser();
@@ -100,7 +98,7 @@ function wpdc_check_requirements() {
 
 		wp_die(
 			esc_html( $message ), 'Plugin Activation Error', array(
-				'response' => 200,
+				'response'  => 200,
 				'back_link' => true,
 			)
 		);

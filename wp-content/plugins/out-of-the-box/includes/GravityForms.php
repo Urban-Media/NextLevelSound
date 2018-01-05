@@ -122,7 +122,7 @@ if (class_exists("GFForms")) {
                 <li class="outofthebox_setting field_setting">
                   <label for="field_outofthebox">Out-of-the-Box Shortcode <?php echo gform_tooltip("form_field_outofthebox"); ?></label>
                   <a href="#" class='button-primary OutoftheBox-GF-shortcodegenerator '><?php _e('Build your Out-of-the-Box shortcode', 'outofthebox'); ?></a>
-                  <input type="text" id="field_outofthebox" class="fieldwidth-3" size="35" disabled="disabled"/>
+                  <textarea id="field_outofthebox" class="fieldwidth-3 fieldheight-2" onchange="SetFieldProperty('OutoftheBoxShortcode', this.value)"></textarea>
                   <br/><small>Missing a Out-of-the-Box Gravity Form feature? Please let me <a href="https://florisdeleeuwnl.zendesk.com/hc/en-us/requests/new" target="_blank">know</a>!</small>
                 </li>
                 <?php
