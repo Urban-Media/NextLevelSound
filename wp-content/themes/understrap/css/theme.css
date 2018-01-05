@@ -10265,7 +10265,7 @@ body {
   padding-right: 10px;
   margin-bottom: 100px; }
 
-.view_study_options {
+.view_study_options, .go_next_level {
   cursor: pointer; }
 
 .last_study_block {

@@ -92,9 +92,11 @@ function load_custom_scripts() {
     wp_register_script('matchHeight', get_template_directory_uri() . '/js/jquery.matchHeight-min.js', array('jquery'), false);
     wp_register_script('global', get_template_directory_uri() . '/js/global.js', array('jquery'), false);
     wp_register_script('courseOverview', get_template_directory_uri() . '/js/course_overview.js', array('jquery'), false);
+    wp_register_script('frontpage', get_template_directory_uri() . '/js/frontpage.js', array('jquery'), false);
 
     wp_enqueue_script('matchHeight', get_template_directory_uri() . '/js/jquery.matchHeight-min.js', array('jquery'), false);
     wp_enqueue_script('global', get_template_directory_uri() . '/js/global.js', array('jquery'), false);
+    wp_enqueue_script('frontpage', get_template_directory_uri() . '/js/frontpage.js', array('jquery'), false);
 
     // Only load courseOverview.js on course overview template pages
     if(is_page_template('page-templates/course-overview.php')) {

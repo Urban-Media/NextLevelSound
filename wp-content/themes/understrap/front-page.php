@@ -113,7 +113,7 @@ get_header();
 
 <!-- Block 3 Start -->
 
-<div class="container-fluid" id="available_courses">
+<div class="container-fluid" id="students_success">
 	<div class="row greyer_block">
 		<div class="col-12">
 
@@ -188,7 +188,7 @@ get_header();
 
 			<div class="white_text uppercase title text-center ready_next_level">
 				I'm ready to go to the next level! &nbsp; &nbsp; &nbsp;
-				<a href="<?php echo get_post_type_archive_link('course'); ?>" class="sideblock_link">
+				<a class="sideblock_link go_next_level">
 					<span class="nls_rounded_button white_button teal_text uppercase text-center sideblock_button" style="padding-left: 20px; padding-right: 20px;">
 						View Courses
 					</span>
@@ -364,80 +364,6 @@ $mentorsBackgroundImage = get_field('bio_background_image');
 
 <div class="container-fluid">
   <div class="row frontpage" style="background-size: cover; background-image: url('<?php echo get_template_directory_uri(); ?>/img/wave_bg.png');">
-    <!--<?php
-		/*
-		 * Get list of courses to display on the front page
-		 *
-		 */
-		$coursesLoop = array();
-		if (is_plugin_active('lifterlms/lifterlms.php')) {
-			if(have_rows('available_courses')) {
-				while(have_rows('available_courses')) { the_row();
-					$course = get_sub_field('course');
-					$coursesLoop[] = $course->ID;
-				}
-			}
-		}
-
-		// Add some fallback in case ACF is ever uninstalled for some reason
-		if (count($coursesLoop) < 1) {
-			$coursesLoop = array(186,111);
-		}
-
-		$i = 0;
-
-    foreach ($coursesLoop as $course) {
-    ?>
-
-		<div class="col-md-3 offset-md-2 text-center">
-
-      <div class="llms-loop-item-content nls_course_nav nls_course_catalogue_loop" style="width: fit-content;" data-mh="courses">
-        <?php
-        $featuredImage = wp_get_attachment_image_src( get_post_thumbnail_id( $course ), 'thumbnail' );
-        ?>
-        <div class="nls_course_catalogue_image_spacer">
-          <div class="nls_course_catalogue_image" style="background-image: url('<?php echo $featuredImage[0]; ?>');"></div>
-        </div>
-
-      	<h4 class="nls_course_catalogue_title uppercase text-center"><?php echo get_the_title($course); ?></h4>
-
-        <?php
-        if (get_field('course_brief', $course)) {
-        ?>
-          <div class="nls_course_catalogue_brief text-center" data-mh="course-briefs">
-            <?php the_field('course_brief', $course); ?>
-          </div>
-        <?php
-				$i++;
-        }
-        ?>
-
-        <?php
-        /*$product = new LLMS_Product( $course );
-        $accessPlans = $product->get_access_plans(true);
-        //var_dump($accessPlans);
-        $accessPlan = new LLMS_Access_Plan($accessPlans[0]);
-        $checkoutURL = $accessPlan->get_checkout_url();*/
-        ?>
-
-        <a href="<?php echo $checkoutURL; ?>" class="sideblock_link">
-          <div class="nls_rounded_button teal_button white_text uppercase text-center sideblock_button">
-            Find out more
-          </div>
-        </a>
-
-        <?php /*echo llms_get_template( 'product/pricing-table.php', array(
-    			'product' => new LLMS_Product( $course ),
-    		) );*/ ?>
-
-      </div>
-
-      </div>
-      <?php
-      }
-      ?>-->
-
-
 	    <?php
 			/*
 			 * Get list of courses to display on the front page
