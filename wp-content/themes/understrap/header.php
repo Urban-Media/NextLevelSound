@@ -242,4 +242,4 @@ if (strlen($heroBackgroundImage['url']) < 1) {
 			</div>
 		</div>
 	</div>
-</div>
+<!--</div>-->

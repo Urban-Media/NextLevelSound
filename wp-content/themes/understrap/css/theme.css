@@ -10700,13 +10700,14 @@ body {
   text-decoration: none !important; }
 
 .course_comparison_wrapper {
-  padding: 50px;
-  padding-left: 50px;
-  padding-right: 50px; }
+  margin: 50px; }
 
 .course_comparison {
   border-radius: 10px;
-  padding: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 50px;
+  padding-bottom: 50px;
   background-color: #f5f5f5;
   position: relative;
   margin-left: auto;
@@ -10747,6 +10748,13 @@ body {
   .course_comparison td:last-child {
     border-right: 0; }
 
+.table th {
+  border: 0; }
+
+.table_centre {
+  margin: 0 auto !important;
+  width: 90%; }
+
 .course_comparison tfoot {
   border-top: 1px solid #dddddd; }
 
@@ -10757,7 +10765,7 @@ body {
 
 .comparison_best_value {
   background-color: #e6e6e6;
-  border-top-right-radius: 10px; }
+  /*border-top-right-radius: 10px;*/ }
 
 .comparison_sign_up {
   font-family: "Raleway", sans-serif;
@@ -10771,12 +10779,19 @@ body {
   padding-bottom: 10px;
   border-radius: 20px;
   border: 0; }
+  .comparison_sign_up a:hover {
+    text-decoration: none;
+    color: white; }
 
 .comparison_sign_up_regular {
   background-color: #303234; }
+  .comparison_sign_up_regular:hover {
+    background-color: #444649; }
 
 .comparison_sign_up_best_value {
   background-color: #00939a; }
+  .comparison_sign_up_best_value:hover {
+    background-color: #007a80; }
 
 .remind_me_details {
   cursor: pointer;

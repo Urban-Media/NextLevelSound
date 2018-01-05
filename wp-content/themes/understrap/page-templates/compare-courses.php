@@ -10,10 +10,10 @@ get_header();
 ?>
 
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-12">
-      <div class="course_comparison_wrapper">
-        <table class="course_comparison nls_course_nav">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <div class="course_comparison_wrapper course_comparison nls_course_nav">
+        <table class="table table-responsive table_centre">
           <thead>
             <tr>
               <th class="comparison_no_border"></th>
