@@ -13,7 +13,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 
 <?php get_sidebar( 'footerfull' ); ?>
 
-<div class="container-fluid nls_footer_container no-hor-padding">
+<div class="container-fluid nls_footer_container">
 
 	<div class="row">
 

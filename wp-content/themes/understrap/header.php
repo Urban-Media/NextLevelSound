@@ -59,11 +59,11 @@ if (strlen($heroBackgroundImage['url']) < 1) {
 
 <div class="hfeed site" id="page">
 
-	<div class="container-fluid no-hor-padding site_header_block">
+	<div class="container-fluid site_header_block">
 		<?php
 		if (!is_lesson()) { ?>
 		<div class="row">
-			<div class="col-12">
+			<div class="col-12 no-hor-padding">
 				<div class="header-strap">
 					<span class="header-strap">
 						Next Level Sound, the new home of <img src="<?php echo get_template_directory_uri(); ?>/img/mixmasterwyatt_logo.png" alt="Mix Master Wyatt Online Next Level Music School" title="Mix Master Wyatt Online Next Level Music School">
@@ -76,7 +76,7 @@ if (strlen($heroBackgroundImage['url']) < 1) {
 		?>
 
 		<div class="row">
-			<div class="col-12">
+			<div class="col-12 no-hor-padding">
 				<div class="hero_background <?php echo $heroBackgroundImageClass; ?>" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('<?php echo $heroBackgroundImage['url']; ?>');">
 					<div class="hero_background_overlay">
 

@@ -32,11 +32,11 @@ get_header();
 
 <!-- Block 2 Start -->
 
-<div class="container-fluid no_hor_padding nls_page_content">
+<div class="container-fluid nls_page_content">
 
   <div class="container">
     <div class="row">
-      <div class="col-12 text-center">
+      <div class="col-12 no_hor_padding text-center">
         <div class="section_subtitle uppercase content_subheading_padding">
           Course Overview
         </div>
@@ -47,13 +47,13 @@ get_header();
     </div>
 
     <div class="row" style="padding-top: 30px;">
-      <div class="col-md-6 col-12">
+      <div class="col-md-6 col-12 no_hor_padding">
 				<div class="course_overview_text">
         	<?php the_field('overview_content'); ?>
 				</div>
       </div>
 
-      <div class="col-md-6 col-12">
+      <div class="col-md-6 col-12 no_hor_padding">
         <div class="section_subtitle uppercase">
           The course is for you if:
         </div>
@@ -178,12 +178,12 @@ if (have_rows('modules')) {
 $mentorImage = get_field('mentor_image');
 $mentorImageMobile = get_field('mentor_image_mobile');
 ?>
-<div class="container-fluid no-hor-padding">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-12 course_your_mentor_background" style="background-image: url('<?php echo $mentorImage['url']; ?>');">
-      <div class="container no-hor-padding">
+    <div class="col-12 no-hor-padding course_your_mentor_background" style="background-image: url('<?php echo $mentorImage['url']; ?>');">
+      <div class="container">
         <div class="row">
-          <div class="col-12 col-md-12 col-lg-5 course_your_mentor_text_container"> <!--offset-lg-1-->
+          <div class="col-12 col-md-12 col-lg-5 no-hor-padding course_your_mentor_text_container"> <!--offset-lg-1-->
             <div class="section_title course_module_title course_your_mentor_title">
               Your Mentor
             </div>
@@ -204,11 +204,11 @@ $mentorImageMobile = get_field('mentor_image_mobile');
 
 <!-- Block 6 Start -->
 
-<div class="container-fluid no-hor-padding" id="testimonials">
+<div class="container-fluid" id="testimonials">
 
 	<div class="row testimonials_bg">
 
-		<div class="col-12">
+		<div class="col-12 no-hor-padding">
 
       <div class="container frontpage_block">
 
@@ -271,9 +271,9 @@ $mentorImageMobile = get_field('mentor_image_mobile');
 
 <!-- Block 7 Start -->
 
-<div class="container-fluid no-hor-padding" id="studyOptions">
+<div class="container-fluid" id="studyOptions">
 	<div class="row grey_block">
-		<div class="col-12">
+		<div class="col-12 no-hor-padding">
       <div class="container frontpage_block study_options_block">
 
         <div class="row frontpage_courses bio_row">
@@ -295,12 +295,12 @@ $mentorImageMobile = get_field('mentor_image_mobile');
   </div>
 </div>
 
-<div class="container-fluid no-hor-padding">
+<div class="container-fluid">
   <div class="row frontpage" style="padding-bottom: 0px; background-size: contain; background-image: url('<?php echo get_template_directory_uri(); ?>/img/study_options_bg.png');">
 
 		<div class="container">
 			<div class="row">
-				<div class="col-12 col-md-10 mr-auto ml-auto">
+				<div class="col-12 col-md-10 mr-auto ml-auto no-hor-padding">
 					<div class="row">
 					<!-- Study options block -->
 					<div class="col-12 col-md-4 col-lg-4 mr-auto ml-auto text-center" data-mh="studyOptions">
@@ -427,11 +427,11 @@ $mentorImageMobile = get_field('mentor_image_mobile');
 
 <!-- Block 8 Start -->
 
-<div class="container-fluid frontpage_image_faded_bg no-hor-padding" style="background-position: bottom; background-image: url('<?php echo get_template_directory_uri(); ?>/img/questions_bg.jpg');">
+<div class="container-fluid frontpage_image_faded_bg" style="background-position: bottom; background-image: url('<?php echo get_template_directory_uri(); ?>/img/questions_bg.jpg');">
 
 	<div class="row">
 
-		<div class="col-12">
+		<div class="col-12 no-hor-padding">
 
       <div class="container frontpage_block">
 
