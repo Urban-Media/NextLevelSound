@@ -183,7 +183,7 @@ $mentorImageMobile = get_field('mentor_image_mobile');
     <div class="col-12 no-hor-padding course_your_mentor_background" style="background-image: url('<?php echo $mentorImage['url']; ?>');">
       <div class="container">
         <div class="row">
-          <div class="col-12 col-md-12 col-lg-5 no-hor-padding course_your_mentor_text_container"> <!--offset-lg-1-->
+          <div class="col-12 col-md-12 col-lg-5 course_your_mentor_text_container"> <!--offset-lg-1-->
             <div class="section_title course_module_title course_your_mentor_title">
               Your Mentor
             </div>
